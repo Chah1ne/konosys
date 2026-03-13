@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduCore — Université SESAME</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────
+   DESIGN SYSTEM — EduCore / Université SESAME
+   Light · Professional · v0-grade
+───────────────────────────────────────────── */
+:root {
+  --bg:          #F8F9FB;
+  --surface:     #FFFFFF;
+  --surface2:    #F3F4F6;
+  --border:      #E5E7EB;
+  --border2:     #D1D5DB;
+  --text:        #111827;
+  --text2:       #374151;
+  --text3:       #6B7280;
+  --text4:       #9CA3AF;
+  --brand:       #1D4ED8;
+  --brand-l:     #EEF2FF;
+  --brand-m:     #BFDBFE;
+  --teal:        #0891B2;
+  --teal-l:      #E0F7FA;
+  --green:       #059669;
+  --green-l:     #D1FAE5;
+  --amber:       #D97706;
+  --amber-l:     #FEF3C7;
+  --red:         #DC2626;
+  --red-l:       #FEE2E2;
+  --purple:      #7C3AED;
+  --purple-l:    #EDE9FE;
+
+  --sidebar-w:   256px;
+  --topbar-h:    56px;
+  --radius:      10px;
+  --radius-sm:   6px;
+  --radius-lg:   14px;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow:      0 4px 16px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.05);
+
+  --font:        'Geist', -apple-system, sans-serif;
+  --mono:        'Geist Mono', monospace;
+  --transition:  .18s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { font-size:14px; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:99px; }
+
+/* ── LAYOUT ── */
+.app { display:flex; min-height:100vh; }
+.sidebar {
+  width:var(--sidebar-w); min-height:100vh; background:var(--surface);
+  border-right:1px solid var(--border); position:fixed; top:0; left:0; bottom:0;
+  display:flex; flex-direction:column; z-index:100; overflow:hidden;
+}
+.main { margin-left:var(--sidebar-w); flex:1; display:flex; flex-direction:column; min-height:100vh; }
+
+/* ── SIDEBAR ── */
+.sb-header {
+  padding:16px 18px 14px; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:10px; height:var(--topbar-h);
+}
+.sb-logo {
+  width:32px; height:32px; border-radius:8px;
+  background:linear-gradient(135deg,#1D4ED8,#0891B2);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.sb-logo svg { width:18px; height:18px; fill:white; }
+.sb-brand { flex:1; min-width:0; }
+.sb-name { font-size:13.5px; font-weight:700; color:var(--text); letter-spacing:-.2px; line-height:1; }
+.sb-tagline { font-size:10.5px; color:var(--text4); margin-top:2px; }
+.sb-ver { font-size:10px; background:var(--brand-l); color:var(--brand); padding:2px 7px; border-radius:99px; font-weight:600; flex-shrink:0; }
+
+.sb-nav { flex:1; overflow-y:auto; padding:8px 10px; }
+.sb-group { margin-bottom:20px; }
+.sb-group-label {
+  font-size:10px; font-weight:600; letter-spacing:.8px; text-transform:uppercase;
+  color:var(--text4); padding:0 8px; margin-bottom:4px; margin-top:4px;
+}
+.nav-item {
+  display:flex; align-items:center; gap:9px; padding:7px 8px; border-radius:var(--radius-sm);
+  cursor:pointer; transition:var(--transition); color:var(--text3); font-size:13px; font-weight:500;
+  position:relative; user-select:none;
+}
+.nav-item:hover { background:var(--surface2); color:var(--text); }
+.nav-item.active { background:var(--brand-l); color:var(--brand); font-weight:600; }
+.nav-icon {
+  width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:var(--transition);
+}
+.nav-item.active .nav-icon { background:var(--brand); }
+.nav-item:not(.active) .nav-icon { background:var(--surface2); }
+.nav-icon svg { width:14px; height:14px; }
+.nav-item.active .nav-icon svg { stroke:white; }
+.nav-item:not(.active) .nav-icon svg { stroke:var(--text3); }
+.nav-label { flex:1; }
+.nav-badge {
+  font-size:10px; font-weight:700; padding:1px 6px; border-radius:99px;
+  background:var(--brand); color:white; min-width:18px; text-align:center;
+}
+.nav-badge.amber { background:var(--amber); }
+.nav-badge.red { background:var(--red); }
+
+.sb-footer { padding:10px; border-top:1px solid var(--border); }
+.user-row {
+  display:flex; align-items:center; gap:9px; padding:8px; border-radius:var(--radius-sm);
+  cursor:pointer; transition:var(--transition);
+}
+.user-row:hover { background:var(--surface2); }
+.avatar {
+  width:30px; height:30px; border-radius:50%; background:linear-gradient(135deg,#1D4ED8,#7C3AED);
+  display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700;
+  color:white; flex-shrink:0;
+}
+.avatar.sm { width:24px; height:24px; font-size:9px; }
+.avatar.teal { background:linear-gradient(135deg,#0891B2,#0369A1); }
+.avatar.green { background:linear-gradient(135deg,#059669,#047857); }
+.user-info { flex:1; min-width:0; }
+.user-name { font-size:12.5px; font-weight:600; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.user-role { font-size:10.5px; color:var(--text4); }
+
+/* ── TOPBAR ── */
+.topbar {
+  height:var(--topbar-h); background:var(--surface); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; padding:0 24px; gap:14px;
+  position:sticky; top:0; z-index:50;
+}
+.topbar-breadcrumb { display:flex; align-items:center; gap:6px; flex:1; }
+.bread-root { font-size:12px; color:var(--text4); font-weight:500; }
+.bread-sep { color:var(--text4); font-size:12px; }
+.bread-cur { font-size:13px; font-weight:600; color:var(--text); }
+.topbar-right { display:flex; align-items:center; gap:8px; }
+.search-box {
+  display:flex; align-items:center; gap:8px; background:var(--surface2);
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:6px 12px; width:240px; cursor:pointer; transition:var(--transition);
+}
+.search-box:hover { border-color:var(--border2); }
+.search-box:focus-within { border-color:var(--brand); background:white; box-shadow:0 0 0 3px var(--brand-m); }
+.search-box input {
+  background:none; border:none; outline:none; font-size:12.5px; color:var(--text);
+  font-family:var(--font); flex:1; width:100%;
+}
+.search-box input::placeholder { color:var(--text4); }
+.search-icon { color:var(--text4); flex-shrink:0; }
+.icon-btn {
+  width:32px; height:32px; border-radius:var(--radius-sm); display:flex; align-items:center;
+  justify-content:center; cursor:pointer; transition:var(--transition); border:1px solid var(--border);
+  background:var(--surface); position:relative; flex-shrink:0;
+}
+.icon-btn:hover { background:var(--surface2); border-color:var(--border2); }
+.icon-btn svg { width:15px; height:15px; stroke:var(--text3); }
+.notif-dot::after {
+  content:''; position:absolute; top:6px; right:6px; width:6px; height:6px;
+  background:var(--red); border-radius:50%; border:1.5px solid white;
+}
+.btn {
+  display:inline-flex; align-items:center; gap:6px; padding:6px 14px;
+  border-radius:var(--radius-sm); font-size:12.5px; font-weight:600; cursor:pointer;
+  transition:var(--transition); border:none; font-family:var(--font);
+}
+.btn-primary { background:var(--brand); color:white; }
+.btn-primary:hover { background:#1e40af; box-shadow:0 0 0 3px var(--brand-m); }
+.btn-secondary { background:var(--surface2); color:var(--text2); border:1px solid var(--border); }
+.btn-secondary:hover { background:var(--border); }
+.btn svg { width:13px; height:13px; stroke:currentColor; }
+
+/* ── CONTENT ── */
+.content { padding:28px; flex:1; }
+.page { display:none; animation:pagein .2s ease; }
+.page.active { display:block; }
+@keyframes pagein { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── PAGE HEADER ── */
+.page-header { margin-bottom:24px; }
+.page-title { font-size:20px; font-weight:700; color:var(--text); letter-spacing:-.4px; }
+.page-sub { font-size:13px; color:var(--text3); margin-top:3px; }
+.page-header-row { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
+
+/* ── CARDS ── */
+.card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-sm);
+}
+.card-pad { padding:20px; }
+.card-header { padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.card-title { font-size:13.5px; font-weight:600; color:var(--text); display:flex; align-items:center; gap:7px; }
+.card-title svg { width:15px; height:15px; stroke:var(--text3); }
+.card-body { padding:20px; }
+.card-action { font-size:12px; color:var(--brand); font-weight:500; cursor:pointer; }
+.card-action:hover { text-decoration:underline; }
+
+/* ── KPI GRID ── */
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px; }
+.kpi {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  padding:18px 20px; position:relative; overflow:hidden; transition:var(--transition);
+}
+.kpi:hover { box-shadow:var(--shadow); border-color:var(--border2); transform:translateY(-1px); }
+.kpi-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.kpi-icon {
+  width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+}
+.kpi-icon svg { width:17px; height:17px; }
+.kpi-icon.blue { background:var(--brand-l); }
+.kpi-icon.blue svg { stroke:var(--brand); }
+.kpi-icon.teal { background:var(--teal-l); }
+.kpi-icon.teal svg { stroke:var(--teal); }
+.kpi-icon.green { background:var(--green-l); }
+.kpi-icon.green svg { stroke:var(--green); }
+.kpi-icon.purple { background:var(--purple-l); }
+.kpi-icon.purple svg { stroke:var(--purple); }
+.kpi-icon.amber { background:var(--amber-l); }
+.kpi-icon.amber svg { stroke:var(--amber); }
+.kpi-trend { font-size:11px; font-weight:600; display:inline-flex; align-items:center; gap:3px; padding:2px 7px; border-radius:99px; }
+.kpi-trend.up { background:var(--green-l); color:var(--green); }
+.kpi-trend.down { background:var(--red-l); color:var(--red); }
+.kpi-trend.neutral { background:var(--surface2); color:var(--text3); }
+.kpi-val { font-size:26px; font-weight:700; color:var(--text); letter-spacing:-.5px; line-height:1; }
+.kpi-label { font-size:12px; color:var(--text3); margin-top:4px; font-weight:500; }
+
+/* ── GRID LAYOUTS ── */
+.grid-2-1 { display:grid; grid-template-columns:2fr 1fr; gap:16px; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.stack { display:flex; flex-direction:column; gap:16px; }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+thead th {
+  text-align:left; font-size:11px; font-weight:600; color:var(--text4);
+  text-transform:uppercase; letter-spacing:.6px; padding:10px 16px;
+  border-bottom:1px solid var(--border); white-space:nowrap; background:var(--surface);
+}
+tbody td { padding:12px 16px; font-size:13px; color:var(--text2); border-bottom:1px solid var(--border); }
+tbody tr:last-child td { border-bottom:none; }
+tbody tr:hover td { background:var(--surface2); }
+.td-main { font-weight:500; color:var(--text); }
+.td-mono { font-family:var(--mono); font-size:12px; color:var(--text3); }
+
+/* ── BADGE ── */
+.badge {
+  display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:99px;
+  font-size:11px; font-weight:600; white-space:nowrap;
+}
+.badge::before { content:''; width:5px; height:5px; border-radius:50%; flex-shrink:0; }
+.badge.green { background:var(--green-l); color:var(--green); }
+.badge.green::before { background:var(--green); }
+.badge.amber { background:var(--amber-l); color:var(--amber); }
+.badge.amber::before { background:var(--amber); }
+.badge.red { background:var(--red-l); color:var(--red); }
+.badge.red::before { background:var(--red); }
+.badge.blue { background:var(--brand-l); color:var(--brand); }
+.badge.blue::before { background:var(--brand); }
+.badge.gray { background:var(--surface2); color:var(--text3); }
+.badge.gray::before { background:var(--text4); }
+.badge.purple { background:var(--purple-l); color:var(--purple); }
+.badge.purple::before { background:var(--purple); }
+
+/* ── PROGRESS ── */
+.progress { height:5px; background:var(--surface2); border-radius:99px; overflow:hidden; }
+.progress-bar { height:100%; border-radius:99px; transition:width .6s ease; }
+.pb-blue { background:var(--brand); }
+.pb-green { background:var(--green); }
+.pb-amber { background:var(--amber); }
+.pb-teal { background:var(--teal); }
+
+/* ── CHART (Canvas-style SVG bars) ── */
+.chart-area { height:140px; display:flex; align-items:flex-end; gap:6px; padding:0 4px; }
+.bar-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; }
+.bar-outer { flex:1; width:100%; display:flex; align-items:flex-end; }
+.bar-inner {
+  width:100%; border-radius:4px 4px 0 0; min-height:3px; position:relative;
+  transition:height .6s cubic-bezier(.4,0,.2,1);
+}
+.bar-inner::after {
+  content:attr(data-tip); position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
+  background:var(--text); color:white; font-size:10px; font-weight:600; padding:3px 7px;
+  border-radius:4px; white-space:nowrap; opacity:0; pointer-events:none; transition:.15s;
+}
+.bar-inner:hover::after { opacity:1; }
+.bar-x { font-size:10px; color:var(--text4); font-weight:500; }
+
+/* ── ACTIVITY ── */
+.activity-list { display:flex; flex-direction:column; }
+.activity-item { display:flex; align-items:flex-start; gap:12px; padding:11px 0; border-bottom:1px solid var(--border); }
+.activity-item:last-child { border-bottom:none; }
+.act-dot-wrap { display:flex; flex-direction:column; align-items:center; gap:0; flex-shrink:0; padding-top:3px; }
+.act-dot { width:7px; height:7px; border-radius:50%; }
+.act-body { flex:1; min-width:0; }
+.act-text { font-size:12.5px; color:var(--text2); line-height:1.5; }
+.act-text strong { color:var(--text); font-weight:600; }
+.act-time { font-size:11px; color:var(--text4); margin-top:2px; font-family:var(--mono); }
+
+/* ── COURS CARDS ── */
+.cours-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.cours-card {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  overflow:hidden; cursor:pointer; transition:var(--transition);
+}
+.cours-card:hover { box-shadow:var(--shadow); border-color:var(--border2); transform:translateY(-2px); }
+.cours-thumb {
+  height:100px; display:flex; align-items:center; justify-content:center; position:relative;
+  overflow:hidden;
+}
+.cours-thumb-bg {
+  position:absolute; inset:0; opacity:.12;
+  background-image:repeating-linear-gradient(45deg,currentColor 0,currentColor 1px,transparent 0,transparent 50%);
+  background-size:8px 8px;
+}
+.cours-thumb-icon { font-size:36px; position:relative; z-index:1; }
+.cours-body { padding:16px; }
+.cours-cat { font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.7px; margin-bottom:6px; }
+.cours-name { font-size:14px; font-weight:700; color:var(--text); line-height:1.4; margin-bottom:8px; }
+.cours-meta { display:flex; gap:12px; margin-bottom:12px; }
+.cours-meta-item { display:flex; align-items:center; gap:4px; font-size:11.5px; color:var(--text3); }
+.cours-meta-item svg { width:12px; height:12px; stroke:currentColor; flex-shrink:0; }
+.cours-footer { display:flex; align-items:center; justify-content:space-between; }
+.instructor-row { display:flex; align-items:center; gap:7px; }
+.inst-name { font-size:12px; color:var(--text3); font-weight:500; }
+.cours-pct { font-size:12px; font-weight:700; }
+
+/* ── SCOLARITÉ ── */
+.stat-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; text-align:center; }
+.stat-card .val { font-size:30px; font-weight:700; letter-spacing:-.5px; line-height:1; margin-bottom:4px; }
+.stat-card .lbl { font-size:12px; color:var(--text3); font-weight:500; }
+.stat-card .sub { font-size:11px; margin-top:8px; font-weight:500; }
+
+/* ── AI WIDGET ── */
+.ai-bar {
+  background:linear-gradient(90deg,var(--brand-l),var(--teal-l));
+  border:1px solid var(--brand-m); border-radius:var(--radius-lg); padding:16px 20px;
+  display:flex; align-items:center; gap:14px; margin-bottom:20px;
+}
+.ai-pulse { width:8px; height:8px; border-radius:50%; background:var(--brand); animation:pulse 2s infinite; flex-shrink:0; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(29,78,216,.3)} 60%{box-shadow:0 0 0 6px rgba(29,78,216,0)} }
+.ai-bar-text { flex:1; }
+.ai-bar-title { font-size:13px; font-weight:700; color:var(--brand); }
+.ai-bar-sub { font-size:11.5px; color:var(--text3); margin-top:1px; }
+.ai-bar-input { display:flex; align-items:center; gap:8px; }
+.ai-bar-input input {
+  border:1px solid var(--brand-m); border-radius:var(--radius-sm); padding:7px 12px;
+  font-size:12.5px; font-family:var(--font); color:var(--text); background:white;
+  outline:none; width:260px; transition:var(--transition);
+}
+.ai-bar-input input:focus { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-m); }
+.ai-bar-input input::placeholder { color:var(--text4); }
+.ai-send-btn {
+  width:32px; height:32px; border-radius:var(--radius-sm); background:var(--brand);
+  border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:var(--transition); flex-shrink:0;
+}
+.ai-send-btn:hover { background:#1e40af; }
+.ai-send-btn svg { width:14px; height:14px; stroke:white; }
+
+/* ── CHAT (NeuralunA page) ── */
+.chat-shell {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+  display:flex; flex-direction:column; height:580px; overflow:hidden;
+}
+.chat-head { padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+.chat-head-info { flex:1; }
+.chat-head-name { font-size:13.5px; font-weight:700; color:var(--text); }
+.chat-head-status { font-size:11px; color:var(--green); font-weight:500; display:flex; align-items:center; gap:4px; }
+.chat-head-status::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); }
+.chat-msgs { flex:1; overflow-y:auto; padding:20px; display:flex; flex-direction:column; gap:14px; }
+.msg-row { display:flex; gap:8px; align-items:flex-end; }
+.msg-row.user { flex-direction:row-reverse; }
+.msg-bubble {
+  max-width:70%; padding:11px 15px; border-radius:12px; font-size:13px; line-height:1.6; color:var(--text2);
+}
+.msg-row.ai .msg-bubble { background:var(--surface2); border:1px solid var(--border); border-bottom-left-radius:3px; }
+.msg-row.user .msg-bubble { background:var(--brand); color:white; border-bottom-right-radius:3px; }
+.msg-sender { font-size:10px; font-weight:700; color:var(--brand); margin-bottom:4px; }
+.typing-bubble { background:var(--surface2); border:1px solid var(--border); border-radius:12px; border-bottom-left-radius:3px; padding:11px 15px; display:flex; gap:4px; align-items:center; }
+.typing-dot { width:5px; height:5px; border-radius:50%; background:var(--text4); animation:tdot 1.4s infinite; }
+.typing-dot:nth-child(2) { animation-delay:.2s; }
+.typing-dot:nth-child(3) { animation-delay:.4s; }
+@keyframes tdot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+.chat-footer { padding:14px 16px; border-top:1px solid var(--border); display:flex; gap:8px; }
+.chat-input {
+  flex:1; border:1px solid var(--border); border-radius:var(--radius-sm); padding:9px 14px;
+  font-size:13px; font-family:var(--font); color:var(--text); outline:none; transition:var(--transition);
+}
+.chat-input:focus { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-m); }
+.chat-input::placeholder { color:var(--text4); }
+.quick-prompts { display:flex; flex-wrap:wrap; gap:7px; padding:0 16px 14px; }
+.qp { font-size:11.5px; padding:5px 12px; border-radius:99px; border:1px solid var(--border); background:var(--surface); color:var(--text2); cursor:pointer; transition:var(--transition); font-weight:500; }
+.qp:hover { border-color:var(--brand); color:var(--brand); background:var(--brand-l); }
+
+/* ── SSO PANEL ── */
+.sso-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.sso-app {
+  border:1px solid var(--border); border-radius:var(--radius-lg); padding:18px;
+  cursor:pointer; transition:var(--transition); background:var(--surface);
+  display:flex; align-items:center; gap:14px;
+}
+.sso-app:hover { border-color:var(--brand); box-shadow:0 0 0 3px var(--brand-m); }
+.sso-app.connected { border-color:var(--green); }
+.sso-app-icon {
+  width:44px; height:44px; border-radius:10px; display:flex; align-items:center;
+  justify-content:center; font-size:22px; flex-shrink:0;
+}
+.sso-app-info { flex:1; }
+.sso-app-name { font-size:13.5px; font-weight:700; color:var(--text); margin-bottom:2px; }
+.sso-app-url { font-size:11px; color:var(--text4); font-family:var(--mono); }
+.sso-app-status { display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+
+/* ── MODAL ── */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:500; display:none; align-items:center; justify-content:center; backdrop-filter:blur(3px); }
+.modal-overlay.open { display:flex; animation:fadein .15s; }
+@keyframes fadein { from{opacity:0} to{opacity:1} }
+.modal-box { background:var(--surface); border-radius:var(--radius-lg); padding:28px; width:460px; box-shadow:var(--shadow-lg); animation:slidein .2s; border:1px solid var(--border); }
+@keyframes slidein { from{transform:translateY(-10px);opacity:0} to{transform:translateY(0);opacity:1} }
+.modal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+.modal-title { font-size:16px; font-weight:700; color:var(--text); }
+.modal-close { width:28px; height:28px; border-radius:var(--radius-sm); background:var(--surface2); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.modal-close svg { width:14px; height:14px; stroke:var(--text3); }
+
+/* ── TOAST ── */
+.toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:8px; }
+.toast {
+  background:var(--text); color:white; border-radius:var(--radius); padding:12px 16px;
+  font-size:13px; font-weight:500; display:flex; align-items:center; gap:10px;
+  box-shadow:var(--shadow-lg); min-width:240px; transform:translateY(8px); opacity:0;
+  transition:.3s cubic-bezier(.4,0,.2,1); pointer-events:none;
+}
+.toast.show { transform:translateY(0); opacity:1; pointer-events:auto; }
+.toast-icon { flex-shrink:0; }
+.toast.success { background:#052e16; border:1px solid #166534; }
+.toast.info { background:#1e3a5f; border:1px solid #1d4ed8; }
+.toast.warn { background:#451a03; border:1px solid #d97706; }
+
+/* ── MISC ── */
+.sep { height:1px; background:var(--border); margin:16px 0; }
+.tag { display:inline-flex; align-items:center; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; }
+.tag.moodle { background:#f97316; color:white; }
+.tag.konosys { background:#7c3aed; color:white; }
+.tag.educore { background:#1d4ed8; color:white; }
+.pill-row { display:flex; gap:6px; flex-wrap:wrap; }
+.info-row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--border); }
+.info-row:last-child { border:none; }
+.info-key { font-size:12px; color:var(--text3); font-weight:500; }
+.info-val { font-size:12.5px; color:var(--text); font-weight:600; }
+.empty-state { text-align:center; padding:48px 24px; color:var(--text4); }
+.empty-state svg { width:40px; height:40px; stroke:var(--text4); margin:0 auto 12px; display:block; }
+.empty-state p { font-size:13px; }
+.link { color:var(--brand); cursor:pointer; font-weight:500; }
+.link:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo">
+      <!-- Graduation cap icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3L1 9l11 6 9-4.91V17M5 13.18V17.18L12 21l7-3.82V13.18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="sb-brand">
+      <div class="sb-name">EduCore</div>
+      <div class="sb-tagline">Université SESAME</div>
+    </div>
+    <span class="sb-ver">v2.0</span>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="sb-group">
+      <div class="sb-group-label">Vue d'ensemble</div>
+      <div class="nav-item active" data-page="dashboard">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1" stroke-width="1.8"/></svg>
+        </div>
+        <span class="nav-label">Tableau de bord</span>
+      </div>
+      <div class="nav-item" data-page="analytics">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="nav-label">Analytics</span>
+      </div>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">LMS — Moodle</div>
+      <div class="nav-item" data-page="cours">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>
+        </div>
+        <span class="nav-label">Cours & Modules</span>
+        <span class="nav-badge">86</span>
+      </div>
+      <div class="nav-item" data-page="etudiants">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span class="nav-label">Étudiants</span>
+        <span class="nav-badge">1 247</span>
+      </div>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">KONOSYS — Scolarité</div>
+      <div class="nav-item" data-page="scolarite">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="1.8" stroke-linecap="round"/><polyline points="14 2 14 8 20 8" stroke-width="1.8" stroke-linecap="round"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.8" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span class="nav-label">Dossiers & Notes</span>
+      </div>
+      <div class="nav-item" data-page="inscriptions">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="1.8"/><line x1="16" y1="2" x2="16" y2="6" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke-width="1.8" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke-width="1.8"/></svg>
+        </div>
+        <span class="nav-label">Inscriptions</span>
+        <span class="nav-badge amber">12</span>
+      </div>
+    </div>
+
+    <div class="sb-group">
+      <div class="sb-group-label">Intelligence</div>
+      <div class="nav-item" data-page="neuraluna">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke-width="1.8"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span class="nav-label">NeuralunA IA</span>
+      </div>
+      <div class="nav-item" data-page="sso">
+        <div class="nav-icon">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke-width="1.8"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span class="nav-label">SSO & Accès</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="sb-footer">
+    <div class="user-row">
+      <div class="avatar">AA</div>
+      <div class="user-info">
+        <div class="user-name">Admin SESAME</div>
+        <div class="user-role">Administrateur principal</div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════
+     MAIN
+═══════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-breadcrumb">
+      <span class="bread-root">EduCore</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="bread-cur" id="breadcrumb-cur">Tableau de bord</span>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">
+        <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Rechercher étudiants, cours…" id="global-search">
+      </div>
+      <div class="icon-btn notif-dot" title="Notifications">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke-width="1.8" stroke-linecap="round"/><path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <div class="icon-btn" title="Exporter" onclick="showToast('Export Excel généré ✓', 'success')">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="1.8" stroke-linecap="round"/><polyline points="7 10 12 15 17 10" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="15" x2="12" y2="3" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </div>
+      <button class="btn btn-primary" onclick="showPage('neuraluna')">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke-width="1.8"/><path d="M12 2v3M12 19v3" stroke-width="1.8" stroke-linecap="round"/></svg>
+        NeuralunA
+      </button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+<!-- ════════════════════════════════════════
+     PAGE: DASHBOARD
+════════════════════════════════════════ -->
+<div class="page active" id="page-dashboard">
+  <div class="page-header">
+    <div class="page-header-row">
+      <div>
+        <div class="page-title">Tableau de bord</div>
+        <div class="page-sub">Université SESAME — Vue consolidée Moodle + KONOSYS · Vendredi 13 mars 2026</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" onclick="showToast('Rapport PDF en cours de génération…', 'info')">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="1.8"/><polyline points="14 2 14 8 20 8" stroke-width="1.8"/></svg>
+          Rapport
+        </button>
+        <button class="btn btn-primary" onclick="showPage('neuraluna')">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Demander à l'IA
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NeuralunA inline bar -->
+  <div class="ai-bar">
+    <div class="ai-pulse"></div>
+    <div class="ai-bar-text">
+      <div class="ai-bar-title">NeuralunA est actif — 2 841 requêtes traitées aujourd'hui</div>
+      <div class="ai-bar-sub">Assistant IA intégré · Données Moodle + KONOSYS unifiées · Réponse moyenne &lt;1.2s</div>
+    </div>
+    <div class="ai-bar-input">
+      <input type="text" id="quick-ai" placeholder="Poser une question rapide…" onkeydown="if(event.key==='Enter')quickAI()">
+      <button class="ai-send-btn" onclick="quickAI()">
+        <svg viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13" stroke-width="2" stroke-linecap="round"/><polygon points="22 2 15 22 11 13 2 9 22 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="kpi-icon blue">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>
+        </div>
+        <span class="kpi-trend up">↑ +8.3%</span>
+      </div>
+      <div class="kpi-val">1 247</div>
+      <div class="kpi-label">Étudiants actifs · KONOSYS</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="kpi-icon teal">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>
+        </div>
+        <span class="kpi-trend up">↑ +12</span>
+      </div>
+      <div class="kpi-val">86</div>
+      <div class="kpi-label">Cours actifs · Moodle LMS</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="kpi-icon green">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="kpi-trend up">↑ +4pts</span>
+      </div>
+      <div class="kpi-val">78%</div>
+      <div class="kpi-label">Taux de complétion moyen</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-top">
+        <div class="kpi-icon purple">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke-width="1.8"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <span class="kpi-trend up">↑ +23%</span>
+      </div>
+      <div class="kpi-val">2 841</div>
+      <div class="kpi-label">Requêtes NeuralunA / jour</div>
+    </div>
+  </div>
+
+  <div class="grid-2-1" style="gap:16px">
+    <div class="stack">
+      <!-- Chart -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Activité Hebdomadaire — Connexions Moodle
+          </div>
+          <div class="pill-row">
+            <span class="tag moodle">Moodle</span>
+            <span class="tag konosys">KONOSYS</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-area" id="main-chart"></div>
+          <div style="display:flex;gap:16px;margin-top:14px">
+            <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text3)"><span style="width:10px;height:10px;border-radius:2px;background:var(--brand);flex-shrink:0;display:inline-block"></span>Connexions Moodle</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text3)"><span style="width:10px;height:10px;border-radius:2px;background:var(--teal);flex-shrink:0;display:inline-block"></span>Dossiers KONOSYS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Students -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>
+            Derniers étudiants actifs
+          </div>
+          <span class="card-action" onclick="showPage('etudiants')">Voir tout →</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Étudiant</th>
+              <th>Filière</th>
+              <th>Dernier accès Moodle</th>
+              <th>Progression</th>
+              <th>Statut</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm">YB</div><div><div class="td-main">Yasmine Benali</div><div class="td-mono">N° 2024-1234</div></div></div></td>
+                <td>Informatique L3</td>
+                <td class="td-mono">Il y a 2h</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="progress" style="flex:1"><div class="progress-bar pb-green" style="width:85%"></div></div><span style="font-size:11px;font-weight:600;color:var(--green);width:30px">85%</span></div></td>
+                <td><span class="badge green">Actif</span></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm teal">KT</div><div><div class="td-main">Karim Tounsi</div><div class="td-mono">N° 2024-1235</div></div></div></td>
+                <td>Management M1</td>
+                <td class="td-mono">Il y a 4h</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="progress" style="flex:1"><div class="progress-bar pb-blue" style="width:62%"></div></div><span style="font-size:11px;font-weight:600;color:var(--brand);width:30px">62%</span></div></td>
+                <td><span class="badge green">Actif</span></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm green">SD</div><div><div class="td-main">Sonia Dridi</div><div class="td-mono">N° 2024-1236</div></div></div></td>
+                <td>Droit L2</td>
+                <td class="td-mono">Il y a 6 jours</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="progress" style="flex:1"><div class="progress-bar pb-amber" style="width:41%"></div></div><span style="font-size:11px;font-weight:600;color:var(--amber);width:30px">41%</span></div></td>
+                <td><span class="badge red">⚠ Risque</span></td>
+              </tr>
+              <tr>
+                <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm" style="background:linear-gradient(135deg,#d97706,#b45309)">AK</div><div><div class="td-main">Ahmed Khelil</div><div class="td-mono">N° 2024-1237</div></div></div></td>
+                <td>Mathématiques L1</td>
+                <td class="td-mono">Il y a 1h</td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div class="progress" style="flex:1"><div class="progress-bar pb-teal" style="width:92%"></div></div><span style="font-size:11px;font-weight:600;color:var(--teal);width:30px">92%</span></div></td>
+                <td><span class="badge green">Actif</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right col -->
+    <div class="stack">
+      <!-- Quick Actions -->
+      <div class="card">
+        <div class="card-header"><div class="card-title"><svg viewBox="0 0 24 24" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Actions rapides</div></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:8px">
+          <button class="btn btn-secondary" style="width:100%;justify-content:flex-start" onclick="showPage('cours');showToast('Éditeur de cours ouvert','info')">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/></svg>
+            Nouveau cours (Moodle)
+          </button>
+          <button class="btn btn-secondary" style="width:100%;justify-content:flex-start" onclick="showPage('inscriptions');showToast('Gestion des inscriptions','info')">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Gérer inscriptions (KONOSYS)
+          </button>
+          <button class="btn btn-secondary" style="width:100%;justify-content:flex-start" onclick="showToast('47 attestations générées par NeuralunA ✓','success')">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke-linecap="round"/></svg>
+            Générer attestations (IA)
+          </button>
+          <button class="btn btn-secondary" style="width:100%;justify-content:flex-start" onclick="showPage('sso')">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-linecap="round"/></svg>
+            SSO & Accès unifiés
+          </button>
+        </div>
+      </div>
+
+      <!-- Alertes NeuralunA -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title" style="color:var(--amber)">
+            <svg viewBox="0 0 24 24" fill="none" style="stroke:var(--amber)"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke-width="1.8"/><line x1="12" y1="9" x2="12" y2="13" stroke-width="1.8" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="2.5" stroke-linecap="round"/></svg>
+            Alertes NeuralunA
+          </div>
+          <span class="badge amber">2 nouvelles</span>
+        </div>
+        <div class="card-body">
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="act-dot-wrap"><div class="act-dot" style="background:var(--red)"></div></div>
+              <div class="act-body">
+                <div class="act-text"><strong>Sonia Dridi</strong> — Risque décrochage détecté. 6 jours sans connexion Moodle. Email personnalisé envoyé.</div>
+                <div class="act-time">Il y a 23 min · NeuralunA auto</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot-wrap"><div class="act-dot" style="background:var(--amber)"></div></div>
+              <div class="act-body">
+                <div class="act-text"><strong>12 dossiers KONOSYS</strong> en attente de validation. Deadline : 16 mars 2026.</div>
+                <div class="act-time">Il y a 2h · Système KONOSYS</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="act-dot-wrap"><div class="act-dot" style="background:var(--green)"></div></div>
+              <div class="act-body">
+                <div class="act-text"><strong>47 attestations</strong> générées automatiquement depuis le portail KONOSYS.</div>
+                <div class="act-time">Ce matin, 09h14 · NeuralunA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sources connectées -->
+      <div class="card">
+        <div class="card-header"><div class="card-title">Sources de données</div></div>
+        <div class="card-body">
+          <div class="info-row">
+            <div style="display:flex;align-items:center;gap:8px"><span class="tag moodle">Moodle</span><span class="info-key" style="margin:0">lms.konosys.com/sesame</span></div>
+            <span class="badge green">Connecté</span>
+          </div>
+          <div class="info-row">
+            <div style="display:flex;align-items:center;gap:8px"><span class="tag konosys">KONOSYS</span><span class="info-key" style="margin:0">sesame.konosys.com</span></div>
+            <span class="badge green">Connecté</span>
+          </div>
+          <div class="info-row">
+            <div style="display:flex;align-items:center;gap:8px"><span class="tag educore">SSO</span><span class="info-key" style="margin:0">Keycloak · Université SESAME</span></div>
+            <span class="badge green">Actif</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: COURS
+════════════════════════════════════════ -->
+<div class="page" id="page-cours">
+  <div class="page-header">
+    <div class="page-header-row">
+      <div>
+        <div class="page-title">Cours & Modules</div>
+        <div class="page-sub">86 cours actifs importés depuis <span class="tag moodle" style="font-size:10px">Moodle</span> lms.konosys.com/sesame</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" onclick="showToast('Import depuis Moodle lancé…','info')">
+          <svg viewBox="0 0 24 24" fill="none" width="13" height="13" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.51"/></svg>
+          Sync Moodle
+        </button>
+        <button class="btn btn-primary" onclick="showToast('Créer un cours avec NeuralunA','info')">
+          <svg viewBox="0 0 24 24" fill="none" width="13" height="13" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/></svg>
+          Nouveau cours
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cours-grid">
+    <!-- Cours 1 -->
+    <div class="cours-card" onclick="showToast('Ouverture du cours dans Moodle','info')">
+      <div class="cours-thumb" style="background:var(--brand-l);color:var(--brand)">
+        <div class="cours-thumb-bg"></div>
+        <div class="cours-thumb-icon">🧠</div>
+      </div>
+      <div class="cours-body">
+        <div class="cours-cat" style="color:var(--brand)">Informatique · L3</div>
+        <div class="cours-name">Intelligence Artificielle & Machine Learning</div>
+        <div class="cours-meta">
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke-width="1.8" stroke-linecap="round"/></svg>42h</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>12 modules</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>234 inscrits</div>
+        </div>
+        <div class="progress" style="margin-bottom:12px"><div class="progress-bar pb-green" style="width:78%"></div></div>
+        <div class="cours-footer">
+          <div class="instructor-row"><div class="avatar sm">PB</div><div class="inst-name">Pr. Benali</div></div>
+          <span class="cours-pct" style="color:var(--green)">78%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Cours 2 -->
+    <div class="cours-card" onclick="showToast('Ouverture du cours dans Moodle','info')">
+      <div class="cours-thumb" style="background:var(--purple-l);color:var(--purple)">
+        <div class="cours-thumb-bg"></div>
+        <div class="cours-thumb-icon">⚖️</div>
+      </div>
+      <div class="cours-body">
+        <div class="cours-cat" style="color:var(--purple)">Droit · L2</div>
+        <div class="cours-name">Droit des Affaires International</div>
+        <div class="cours-meta">
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke-width="1.8" stroke-linecap="round"/></svg>30h</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>8 modules</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>187 inscrits</div>
+        </div>
+        <div class="progress" style="margin-bottom:12px"><div class="progress-bar pb-blue" style="width:55%"></div></div>
+        <div class="cours-footer">
+          <div class="instructor-row"><div class="avatar sm" style="background:linear-gradient(135deg,var(--purple),#4c1d95)">SK</div><div class="inst-name">Dr. Khelifi</div></div>
+          <span class="cours-pct" style="color:var(--brand)">55%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Cours 3 -->
+    <div class="cours-card" onclick="showToast('Ouverture du cours dans Moodle','info')">
+      <div class="cours-thumb" style="background:var(--amber-l);color:var(--amber)">
+        <div class="cours-thumb-bg"></div>
+        <div class="cours-thumb-icon">📊</div>
+      </div>
+      <div class="cours-body">
+        <div class="cours-cat" style="color:var(--amber)">Gestion · M1</div>
+        <div class="cours-name">Finance d'Entreprise & Analyse Financière</div>
+        <div class="cours-meta">
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke-width="1.8" stroke-linecap="round"/></svg>38h</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>10 modules</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>156 inscrits</div>
+        </div>
+        <div class="progress" style="margin-bottom:12px"><div class="progress-bar" style="width:91%;background:var(--amber)"></div></div>
+        <div class="cours-footer">
+          <div class="instructor-row"><div class="avatar sm" style="background:linear-gradient(135deg,var(--amber),#92400e)">MT</div><div class="inst-name">Pr. Tounsi</div></div>
+          <span class="cours-pct" style="color:var(--amber)">91%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Cours 4 -->
+    <div class="cours-card" onclick="showToast('Ouverture du cours dans Moodle','info')">
+      <div class="cours-thumb" style="background:var(--green-l);color:var(--green)">
+        <div class="cours-thumb-bg"></div>
+        <div class="cours-thumb-icon">🌿</div>
+      </div>
+      <div class="cours-body">
+        <div class="cours-cat" style="color:var(--green)">Sciences · L3</div>
+        <div class="cours-name">Biologie Moléculaire Avancée</div>
+        <div class="cours-meta">
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke-width="1.8" stroke-linecap="round"/></svg>50h</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>14 modules</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>98 inscrits</div>
+        </div>
+        <div class="progress" style="margin-bottom:12px"><div class="progress-bar pb-teal" style="width:43%"></div></div>
+        <div class="cours-footer">
+          <div class="instructor-row"><div class="avatar sm" style="background:linear-gradient(135deg,var(--green),#064e3b)">LD</div><div class="inst-name">Dr. Drissi</div></div>
+          <span class="cours-pct" style="color:var(--teal)">43%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Cours 5 -->
+    <div class="cours-card" onclick="showToast('Ouverture du cours dans Moodle','info')">
+      <div class="cours-thumb" style="background:var(--teal-l);color:var(--teal)">
+        <div class="cours-thumb-bg"></div>
+        <div class="cours-thumb-icon">☁️</div>
+      </div>
+      <div class="cours-body">
+        <div class="cours-cat" style="color:var(--teal)">Dev Web · M2</div>
+        <div class="cours-name">Architecture Cloud & DevOps</div>
+        <div class="cours-meta">
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke-width="1.8" stroke-linecap="round"/></svg>35h</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke-width="1.8" stroke-linecap="round"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke-width="1.8"/></svg>9 modules</div>
+          <div class="cours-meta-item"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>211 inscrits</div>
+        </div>
+        <div class="progress" style="margin-bottom:12px"><div class="progress-bar pb-teal" style="width:67%"></div></div>
+        <div class="cours-footer">
+          <div class="instructor-row"><div class="avatar sm" style="background:linear-gradient(135deg,var(--teal),#164e63)">RH</div><div class="inst-name">Pr. Hamdi</div></div>
+          <span class="cours-pct" style="color:var(--teal)">67%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Add -->
+    <div class="cours-card" style="border-style:dashed;background:transparent;display:flex;align-items:center;justify-content:center;min-height:240px;cursor:pointer" onclick="showToast('NeuralunA ouvre l\'éditeur de cours intelligent','info')">
+      <div style="text-align:center">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--brand-l);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/></svg>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:var(--brand)">Créer avec NeuralunA</div>
+        <div style="font-size:12px;color:var(--text4);margin-top:4px">Génération IA automatique</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: ÉTUDIANTS
+════════════════════════════════════════ -->
+<div class="page" id="page-etudiants">
+  <div class="page-header">
+    <div class="page-header-row">
+      <div>
+        <div class="page-title">Gestion des étudiants</div>
+        <div class="page-sub">1 247 étudiants inscrits · Données synchronisées <span class="tag moodle" style="font-size:10px">Moodle</span> + <span class="tag konosys" style="font-size:10px">KONOSYS</span></div>
+      </div>
+      <button class="btn btn-primary" onclick="showToast('Export Excel de tous les étudiants ✓','success')">
+        <svg viewBox="0 0 24 24" fill="none" width="13" height="13" stroke="white" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Exporter
+      </button>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px;padding:12px 16px;background:var(--amber-l);border-color:var(--amber)">
+    <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      <span style="font-weight:600;color:var(--amber)">NeuralunA a détecté 2 étudiants à risque de décrochage.</span>
+      <span style="color:var(--text3)">Des emails personnalisés ont été envoyés automatiquement.</span>
+      <span class="link" onclick="showToast('Détails des actions NeuralunA : 2 emails envoyés, 2 conseillers notifiés','info')" style="margin-left:auto;white-space:nowrap">Voir les actions →</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke-width="1.8"/></svg>Liste complète — Université SESAME</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-secondary" style="font-size:11.5px;padding:5px 10px">Filière ↓</button>
+        <button class="btn btn-secondary" style="font-size:11.5px;padding:5px 10px">Niveau ↓</button>
+        <button class="btn btn-secondary" style="font-size:11.5px;padding:5px 10px">Statut ↓</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Étudiant / N° KONOSYS</th>
+          <th>Filière</th>
+          <th>Connexion Moodle</th>
+          <th>Cours suivis</th>
+          <th>Moyenne KONOSYS</th>
+          <th>Alerte IA</th>
+          <th></th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm">YB</div><div><div class="td-main">Yasmine Benali</div><div class="td-mono">2024-1234</div></div></div></td>
+            <td>Informatique L3</td>
+            <td class="td-mono">Il y a 2h</td>
+            <td><div style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600">6/6</span><div class="progress" style="width:60px"><div class="progress-bar pb-green" style="width:100%"></div></div></div></td>
+            <td><span style="font-weight:700;color:var(--green)">16.5/20</span></td>
+            <td><span class="badge green">✓ OK</span></td>
+            <td><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier étudiant Yasmine Benali ouvert','info')">Dossier</button></td>
+          </tr>
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm teal">KT</div><div><div class="td-main">Karim Tounsi</div><div class="td-mono">2024-1235</div></div></div></td>
+            <td>Management M1</td>
+            <td class="td-mono">Il y a 4h</td>
+            <td><div style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600">4/5</span><div class="progress" style="width:60px"><div class="progress-bar pb-blue" style="width:80%"></div></div></div></td>
+            <td><span style="font-weight:700;color:var(--brand)">13.8/20</span></td>
+            <td><span class="badge green">✓ OK</span></td>
+            <td><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier étudiant Karim Tounsi ouvert','info')">Dossier</button></td>
+          </tr>
+          <tr style="background:var(--red-l)">
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm green">SD</div><div><div class="td-main">Sonia Dridi</div><div class="td-mono">2024-1236</div></div></div></td>
+            <td>Droit L2</td>
+            <td class="td-mono" style="color:var(--red)">Il y a 6 jours ⚠</td>
+            <td><div style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600">2/5</span><div class="progress" style="width:60px"><div class="progress-bar" style="width:40%;background:var(--red)"></div></div></div></td>
+            <td><span style="font-weight:700;color:var(--amber)">11.2/20</span></td>
+            <td><span class="badge red">⚠ Risque</span></td>
+            <td><button class="btn" style="font-size:11px;padding:4px 10px;background:var(--red);color:white" onclick="showToast('Conseiller pédagogique notifié · Email de relance envoyé ✓','success')">Alerter</button></td>
+          </tr>
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm" style="background:linear-gradient(135deg,#d97706,#b45309)">AK</div><div><div class="td-main">Ahmed Khelil</div><div class="td-mono">2024-1237</div></div></div></td>
+            <td>Mathématiques L1</td>
+            <td class="td-mono">Il y a 1h</td>
+            <td><div style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600">7/7</span><div class="progress" style="width:60px"><div class="progress-bar pb-teal" style="width:100%"></div></div></div></td>
+            <td><span style="font-weight:700;color:var(--teal)">18.1/20</span></td>
+            <td><span class="badge blue">⭐ Excellent</span></td>
+            <td><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier étudiant Ahmed Khelil ouvert','info')">Dossier</button></td>
+          </tr>
+          <tr style="background:var(--amber-l)">
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm" style="background:linear-gradient(135deg,#059669,#065f46)">NS</div><div><div class="td-main">Nour Sassi</div><div class="td-mono">2024-1238</div></div></div></td>
+            <td>Biologie L3</td>
+            <td class="td-mono" style="color:var(--amber)">Il y a 4 jours</td>
+            <td><div style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600">3/6</span><div class="progress" style="width:60px"><div class="progress-bar" style="width:50%;background:var(--amber)"></div></div></div></td>
+            <td><span style="font-weight:700;color:var(--amber)">10.5/20</span></td>
+            <td><span class="badge amber">⚠ Surveiller</span></td>
+            <td><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier étudiant Nour Sassi ouvert','info')">Dossier</button></td>
+          </tr>
+          <tr>
+            <td><div style="display:flex;align-items:center;gap:9px"><div class="avatar sm" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">MB</div><div><div class="td-main">Mehdi Bouraoui</div><div class="td-mono">2024-1239</div></div></div></td>
+            <td>Dev Web M2</td>
+            <td class="td-mono">Il y a 30min</td>
+            <td><div style="display:flex;align-items:center;gap:6px"><span style="font-size:12.5px;font-weight:600">8/8</span><div class="progress" style="width:60px"><div class="progress-bar pb-green" style="width:100%"></div></div></div></td>
+            <td><span style="font-weight:700;color:var(--green)">17.4/20</span></td>
+            <td><span class="badge blue">⭐ Excellent</span></td>
+            <td><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier étudiant Mehdi Bouraoui ouvert','info')">Dossier</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: SCOLARITÉ
+════════════════════════════════════════ -->
+<div class="page" id="page-scolarite">
+  <div class="page-header">
+    <div class="page-header-row">
+      <div>
+        <div class="page-title">Dossiers & Notes</div>
+        <div class="page-sub">Portail de scolarité · Remplacement <span class="tag konosys" style="font-size:10px">KONOSYS</span> sesame.konosys.com</div>
+      </div>
+      <button class="btn btn-primary" onclick="showToast('47 attestations générées par NeuralunA ✓','success')">
+        <svg viewBox="0 0 24 24" fill="none" width="13" height="13" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3" stroke-linecap="round"/></svg>
+        Générer attestations (IA)
+      </button>
+    </div>
+  </div>
+  <div class="stat-cards">
+    <div class="stat-card"><div class="val" style="color:var(--brand)">1 247</div><div class="lbl">Étudiants inscrits</div><div class="sub" style="color:var(--green)">↑ +32 ce mois</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--green)">94%</div><div class="lbl">Dossiers complets</div><div class="sub" style="color:var(--amber)">75 à compléter</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--teal)">14.2</div><div class="lbl">Moyenne promo générale</div><div class="sub" style="color:var(--green)">↑ +0.8 vs N-1</div></div>
+    <div class="stat-card"><div class="val" style="color:var(--purple)">342</div><div class="lbl">Certificats délivrés</div><div class="sub" style="color:var(--text4)">ce semestre</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="1.8"/><polyline points="14 2 14 8 20 8" stroke-width="1.8"/><line x1="16" y1="13" x2="8" y2="13" stroke-width="1.8" stroke-linecap="round"/></svg>Dossiers étudiants — KONOSYS migré</div>
+      <span class="card-action" onclick="showToast('Export Excel KONOSYS complet ✓','success')">Export Excel ↓</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Étudiant</th><th>N° KONOSYS</th><th>Filière</th><th>Niveau</th><th>Moyenne</th><th>Dossier</th><th>Document</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm">YB</div>Yasmine Benali</div></td><td class="td-mono">2024-1234</td><td>Informatique</td><td><span class="badge blue">L3</span></td><td><b style="color:var(--green)">16.5/20</b></td><td><span class="badge green">Complet</span></td><td><button onclick="showToast('Attestation générée par NeuralunA ✓','success')" class="btn btn-secondary" style="font-size:11px;padding:4px 10px">Attestation</button></td></tr>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm teal">KT</div>Karim Tounsi</div></td><td class="td-mono">2024-1235</td><td>Management</td><td><span class="badge blue">M1</span></td><td><b style="color:var(--brand)">13.8/20</b></td><td><span class="badge green">Complet</span></td><td><button onclick="showToast('Relevé de notes PDF généré ✓','success')" class="btn btn-secondary" style="font-size:11px;padding:4px 10px">Relevé</button></td></tr>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm green">SD</div>Sonia Dridi</div></td><td class="td-mono">2024-1236</td><td>Droit</td><td><span class="badge blue">L2</span></td><td><b style="color:var(--amber)">11.2/20</b></td><td><span class="badge amber">Incomplet</span></td><td><button onclick="showToast('Email de relance NeuralunA envoyé ✓','success')" class="btn" style="font-size:11px;padding:4px 10px;background:var(--amber-l);border:1px solid var(--amber);color:var(--amber);border-radius:6px;cursor:pointer">Relancer</button></td></tr>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm" style="background:linear-gradient(135deg,#d97706,#b45309)">AK</div>Ahmed Khelil</div></td><td class="td-mono">2024-1237</td><td>Mathématiques</td><td><span class="badge blue">L1</span></td><td><b style="color:var(--teal)">18.1/20</b></td><td><span class="badge green">Complet</span></td><td><button onclick="showToast('Relevé de notes Ahmed Khelil ✓','success')" class="btn btn-secondary" style="font-size:11px;padding:4px 10px">Relevé</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: INSCRIPTIONS
+════════════════════════════════════════ -->
+<div class="page" id="page-inscriptions">
+  <div class="page-header">
+    <div class="page-title">Inscriptions en attente</div>
+    <div class="page-sub">12 dossiers à valider · <span class="tag konosys" style="font-size:10px">KONOSYS</span> · Deadline 16 mars 2026</div>
+  </div>
+  <div class="card" style="margin-bottom:16px;padding:14px 20px;background:var(--brand-l);border-color:var(--brand-m)">
+    <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3" stroke-linecap="round"/></svg>
+      <span style="font-weight:600;color:var(--brand)">NeuralunA peut analyser et pré-valider automatiquement les 12 dossiers complets.</span>
+      <button class="btn btn-primary" style="margin-left:auto" onclick="showToast('NeuralunA analyse les 12 dossiers… 9 validés, 3 incomplets ✓','success')">Lancer l'analyse IA</button>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Dossiers en attente de validation</div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Candidat</th><th>Filière demandée</th><th>Date soumission</th><th>Dossier</th><th>Score IA</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm" style="background:linear-gradient(135deg,#f97316,#c2410c)">MH</div>Mohamed Haddad</div></td><td>Informatique L1</td><td class="td-mono">10 mars 2026</td><td><span class="badge green">Complet</span></td><td><span style="font-weight:700;color:var(--green)">94/100</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-primary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier Mohamed Haddad validé ✓','success')">Valider</button><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px">Refuser</button></div></td></tr>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm" style="background:linear-gradient(135deg,#ec4899,#be185d)">AB</div>Amira Bahri</div></td><td>Droit L1</td><td class="td-mono">11 mars 2026</td><td><span class="badge green">Complet</span></td><td><span style="font-weight:700;color:var(--green)">87/100</span></td><td><div style="display:flex;gap:6px"><button class="btn btn-primary" style="font-size:11px;padding:4px 10px" onclick="showToast('Dossier Amira Bahri validé ✓','success')">Valider</button><button class="btn btn-secondary" style="font-size:11px;padding:4px 10px">Refuser</button></div></td></tr>
+          <tr><td><div style="display:flex;align-items:center;gap:8px"><div class="avatar sm" style="background:linear-gradient(135deg,#6366f1,#4338ca)">SR</div>Salim Romdhani</div></td><td>Management L1</td><td class="td-mono">12 mars 2026</td><td><span class="badge amber">Incomplet</span></td><td><span style="font-weight:700;color:var(--amber)">Manque pièces</span></td><td><div style="display:flex;gap:6px"><button class="btn" style="font-size:11px;padding:4px 10px;background:var(--amber-l);color:var(--amber);border:1px solid var(--amber);border-radius:6px;cursor:pointer" onclick="showToast('Email de demande de pièces envoyé ✓','success')">Relancer</button></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: ANALYTICS
+════════════════════════════════════════ -->
+<div class="page" id="page-analytics">
+  <div class="page-header">
+    <div class="page-title">Analytics & Rapports</div>
+    <div class="page-sub">Données consolidées Moodle + KONOSYS · Généré par NeuralunA</div>
+  </div>
+  <div class="kpi-grid" style="margin-bottom:20px">
+    <div class="kpi"><div class="kpi-top"><div class="kpi-icon blue"><svg viewBox="0 0 24 24" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="kpi-trend up">↑ +23%</span></div><div class="kpi-val">+23%</div><div class="kpi-label">Engagement cours · Moodle</div></div>
+    <div class="kpi"><div class="kpi-top"><div class="kpi-icon teal"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke-width="1.8"/><polyline points="12 6 12 12 16 14" stroke-width="1.8" stroke-linecap="round"/></svg></div><span class="kpi-trend up">↑ +18min</span></div><div class="kpi-val">2.4h</div><div class="kpi-label">Temps moyen / étudiant / jour</div></div>
+    <div class="kpi"><div class="kpi-top"><div class="kpi-icon green"><svg viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-width="1.8" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke-width="1.8" stroke-linecap="round"/></svg></div><span class="kpi-trend up">↑ Record</span></div><div class="kpi-val">342</div><div class="kpi-label">Certificats délivrés ce semestre</div></div>
+    <div class="kpi"><div class="kpi-top"><div class="kpi-icon amber"><svg viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="kpi-trend up">↑ Excellent</span></div><div class="kpi-val">94%</div><div class="kpi-label">Satisfaction NeuralunA</div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="card-title">Rapport NeuralunA — Semaine du 9 au 13 mars 2026</div><button class="btn btn-secondary" onclick="showToast('Rapport PDF exporté ✓','success')"><svg viewBox="0 0 24 24" fill="none" width="12" height="12" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> PDF</button></div>
+    <div class="card-body">
+      <div style="background:var(--surface2);border-radius:var(--radius);padding:18px;font-size:13px;line-height:1.9;color:var(--text2)">
+        <div style="font-weight:700;color:var(--brand);margin-bottom:10px;font-size:13.5px">📊 Résumé exécutif — NeuralunA Analytics</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div>• La plateforme EduCore a enregistré <b>8 432 connexions</b> via Moodle cette semaine, soit une hausse de <b>+12%</b> par rapport à S-1.</div>
+          <div>• Le cours le plus actif est <b>"IA & Machine Learning"</b> (234 étudiants, 78% complétion). Recommandation : ajouter un quiz intermédiaire.</div>
+          <div>• <b>2 étudiants</b> identifiés à risque de décrochage. Actions automatiques déclenchées par NeuralunA (emails + notification conseillers).</div>
+          <div>• NeuralunA a traité <b>2 841 requêtes</b> : 47 attestations, 12 relevés de notes, 892 questions pédagogiques, 112 inscriptions validées.</div>
+          <div>• <b>Économies estimées</b> vs Moodle + KONOSYS séparés : <b style="color:var(--green)">~75 000 €/an</b> sur licences et maintenance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: NEURALUNA
+════════════════════════════════════════ -->
+<div class="page" id="page-neuraluna">
+  <div class="page-header">
+    <div class="page-header-row">
+      <div>
+        <div class="page-title">NeuralunA IA</div>
+        <div class="page-sub">Assistant intelligent intégré · Données Moodle + KONOSYS · Université SESAME</div>
+      </div>
+      <div class="pill-row">
+        <span class="badge green">En ligne</span>
+        <span class="badge blue">2 841 req. aujourd'hui</span>
+        <span class="badge gray">Temps de réponse : 1.2s</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2-1" style="gap:16px;align-items:start">
+    <!-- Chat -->
+    <div class="chat-shell">
+      <div class="chat-head">
+        <div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--brand),var(--purple));display:flex;align-items:center;justify-content:center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+        </div>
+        <div class="chat-head-info">
+          <div class="chat-head-name">NeuralunA</div>
+          <div class="chat-head-status">En ligne · Université SESAME</div>
+        </div>
+        <button class="btn btn-secondary" onclick="clearChat()" style="font-size:11px;padding:4px 10px">Réinitialiser</button>
+      </div>
+      <div class="quick-prompts">
+        <div class="qp" onclick="setPrompt(this)">📊 Rapport de la semaine</div>
+        <div class="qp" onclick="setPrompt(this)">⚠️ Étudiants à risque</div>
+        <div class="qp" onclick="setPrompt(this)">📝 Créer un quiz IA</div>
+        <div class="qp" onclick="setPrompt(this)">📄 Générer attestation</div>
+        <div class="qp" onclick="setPrompt(this)">📈 Performances Moodle</div>
+      </div>
+      <div class="chat-msgs" id="chat-msgs">
+        <div class="msg-row ai">
+          <div class="avatar sm" style="background:linear-gradient(135deg,var(--brand),var(--purple))">N</div>
+          <div class="msg-bubble">
+            <div class="msg-sender">NeuralunA · Université SESAME</div>
+            Bonjour ! Je suis NeuralunA, votre assistant IA connecté à <strong>Moodle</strong> (86 cours, 1 247 étudiants) et au portail <strong>KONOSYS</strong> (dossiers, notes, inscriptions). Comment puis-je vous aider ?
+          </div>
+        </div>
+      </div>
+      <div id="typing-row" style="display:none;padding:0 20px 10px">
+        <div class="msg-row ai">
+          <div class="avatar sm" style="background:linear-gradient(135deg,var(--brand),var(--purple))">N</div>
+          <div class="typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
+        </div>
+      </div>
+      <div class="chat-footer">
+        <input class="chat-input" id="chat-input" placeholder="Posez votre question à NeuralunA…" onkeydown="if(event.key==='Enter')sendMsg()">
+        <button class="btn btn-primary" onclick="sendMsg()">
+          <svg viewBox="0 0 24 24" fill="none" width="13" height="13" stroke="white" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13" stroke-linecap="round"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Envoyer
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Capabilities -->
+    <div class="stack">
+      <div class="card">
+        <div class="card-header"><div class="card-title">Capacités NeuralunA</div></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:6px;background:var(--brand-l);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+            <div><div style="font-size:12.5px;font-weight:600;color:var(--text)">Pédagogie Moodle</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">Génère quiz, résumés, plans de cours depuis les contenus Moodle</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:6px;background:var(--purple-l);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><div style="font-size:12.5px;font-weight:600;color:var(--text)">Documents KONOSYS</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">Attestations, relevés, certificats générés automatiquement</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:6px;background:var(--red-l);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="3"/></svg></div>
+            <div><div style="font-size:12.5px;font-weight:600;color:var(--text)">Détection décrochage</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">Analyse comportements Moodle et déclenche alertes automatiques</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:6px;background:var(--green-l);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div><div style="font-size:12.5px;font-weight:600;color:var(--text)">Analytics prédictifs</div><div style="font-size:11.5px;color:var(--text3);margin-top:2px">Rapports intelligents, prévisions de performance par filière</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><div class="card-title">Statistiques NeuralunA</div></div>
+        <div class="card-body">
+          <div class="info-row"><span class="info-key">Requêtes aujourd'hui</span><span class="info-val" style="color:var(--brand)">2 841</span></div>
+          <div class="info-row"><span class="info-key">Attestations générées</span><span class="info-val" style="color:var(--green)">47</span></div>
+          <div class="info-row"><span class="info-key">Alertes déclenchées</span><span class="info-val" style="color:var(--red)">2</span></div>
+          <div class="info-row"><span class="info-key">Heures admin économisées</span><span class="info-val" style="color:var(--teal)">~18h</span></div>
+          <div class="info-row"><span class="info-key">Satisfaction utilisateurs</span><span class="info-val" style="color:var(--green)">94%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: SSO
+════════════════════════════════════════ -->
+<div class="page" id="page-sso">
+  <div class="page-header">
+    <div class="page-title">SSO & Accès unifiés</div>
+    <div class="page-sub">Un seul compte pour accéder à tous vos outils · Keycloak · OpenID Connect · Université SESAME</div>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="card card-pad">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div style="width:38px;height:38px;border-radius:8px;background:var(--green-l);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div><div style="font-size:14px;font-weight:700;color:var(--text)">SSO Opérationnel</div><div style="font-size:12px;color:var(--text3)">Keycloak v22 · Université SESAME</div></div>
+        <span class="badge green" style="margin-left:auto">Actif</span>
+      </div>
+      <div class="info-row"><span class="info-key">Protocole</span><span class="info-val">OpenID Connect + OAuth2</span></div>
+      <div class="info-row"><span class="info-key">Fournisseur</span><span class="info-val">Keycloak (auto-hébergé)</span></div>
+      <div class="info-row"><span class="info-key">Sessions actives</span><span class="info-val" style="color:var(--green)">1 247</span></div>
+      <div class="info-row"><span class="info-key">MFA activé</span><span class="info-val" style="color:var(--green)">✓ Tous les admins</span></div>
+    </div>
+    <div class="card card-pad">
+      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:14px">Avant EduCore — Problème SSO</div>
+      <div style="background:var(--red-l);border-radius:var(--radius);padding:14px;font-size:12.5px;color:var(--text2);margin-bottom:12px;border:1px solid #fca5a5">
+        <div style="font-weight:600;color:var(--red);margin-bottom:8px">❌ Situation actuelle (2 systèmes séparés)</div>
+        <div>• Login <b>Moodle</b> : lms.konosys.com/sesame → identifiants Moodle</div>
+        <div>• Login <b>KONOSYS</b> : sesame.konosys.com → identifiants KONOSYS</div>
+        <div style="margin-top:8px;color:var(--red)">→ Double authentification · Double saisie · Confusion étudiants</div>
+      </div>
+      <div style="background:var(--green-l);border-radius:var(--radius);padding:14px;font-size:12.5px;color:var(--text2);border:1px solid #6ee7b7">
+        <div style="font-weight:600;color:var(--green);margin-bottom:8px">✓ Avec EduCore SSO</div>
+        <div>• 1 seul login → accès à tout</div>
+        <div>• Moodle + KONOSYS + NeuralunA + Mobile</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="card-title">Applications connectées via EduCore SSO</div></div>
+    <div class="card-body">
+      <div class="sso-grid">
+        <div class="sso-app connected" onclick="showToast('Moodle LMS ouvert via SSO ✓','success')">
+          <div class="sso-app-icon" style="background:#fff3e0">📚</div>
+          <div class="sso-app-info">
+            <div class="sso-app-name">Moodle LMS — SESAME</div>
+            <div class="sso-app-url">lms.konosys.com/sesame</div>
+            <div class="sso-app-status"><span class="badge green">Connecté</span><span style="font-size:11px;color:var(--text4)">1 247 sessions</span></div>
+          </div>
+        </div>
+        <div class="sso-app connected" onclick="showToast('KONOSYS ouvert via SSO ✓','success')">
+          <div class="sso-app-icon" style="background:#f3e8ff">🏛️</div>
+          <div class="sso-app-info">
+            <div class="sso-app-name">KONOSYS — Scolarité</div>
+            <div class="sso-app-url">sesame.konosys.com</div>
+            <div class="sso-app-status"><span class="badge green">Connecté</span><span style="font-size:11px;color:var(--text4)">SAML 2.0</span></div>
+          </div>
+        </div>
+        <div class="sso-app connected" onclick="showPage('neuraluna')">
+          <div class="sso-app-icon" style="background:var(--brand-l)">🤖</div>
+          <div class="sso-app-info">
+            <div class="sso-app-name">NeuralunA IA</div>
+            <div class="sso-app-url">neuraluna.educore.sesame.tn</div>
+            <div class="sso-app-status"><span class="badge green">Connecté</span><span style="font-size:11px;color:var(--text4)">API Gateway</span></div>
+          </div>
+        </div>
+        <div class="sso-app" onclick="showToast('Module mobile en cours de développement — Phase 3','warn')">
+          <div class="sso-app-icon" style="background:var(--surface2)">📱</div>
+          <div class="sso-app-info">
+            <div class="sso-app-name">EduCore Mobile</div>
+            <div class="sso-app-url">iOS & Android · React Native</div>
+            <div class="sso-app-status"><span class="badge gray">Phase 3</span><span style="font-size:11px;color:var(--text4)">Q3 2026</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /content -->
+</main>
+</div><!-- /app -->
+
+<!-- TOASTS -->
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+// ── NAVIGATION ────────────────────────────────────────
+const breadcrumbs = {
+  dashboard:'Tableau de bord', cours:'Cours & Modules', etudiants:'Étudiants',
+  scolarite:'Dossiers & Notes', inscriptions:'Inscriptions', analytics:'Analytics',
+  neuraluna:'NeuralunA IA', sso:'SSO & Accès'
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const p = document.getElementById('page-'+id);
+  if(p) p.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.page === id);
+  });
+  const bc = document.getElementById('breadcrumb-cur');
+  if(bc) bc.textContent = breadcrumbs[id] || id;
+  window.scrollTo(0,0);
+}
+
+document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+  el.addEventListener('click', () => showPage(el.dataset.page));
+});
+
+// ── CHART ─────────────────────────────────────────────
+(function() {
+  const moodle  = [312, 428, 287, 510, 476, 390, 541];
+  const konosys = [180, 210, 165, 240, 198, 175, 222];
+  const labels  = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  const max = Math.max(...moodle, ...konosys);
+  const wrap = document.getElementById('main-chart');
+  if (!wrap) return;
+
+  labels.forEach((l, i) => {
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+
+    const outer = document.createElement('div');
+    outer.className = 'bar-outer';
+    outer.style.gap = '4px';
+    outer.style.display = 'flex';
+    outer.style.alignItems = 'flex-end';
+    outer.style.width = '100%';
+    outer.style.flex = '1';
+
+    // Moodle bar
+    const b1 = document.createElement('div');
+    b1.className = 'bar-inner';
+    b1.style.height = (moodle[i]/max*90)+'%';
+    b1.style.background = 'var(--brand)';
+    b1.style.borderRadius = '4px 4px 0 0';
+    b1.style.flex = '1';
+    b1.setAttribute('data-tip', moodle[i]+' connexions Moodle');
+
+    // KONOSYS bar
+    const b2 = document.createElement('div');
+    b2.className = 'bar-inner';
+    b2.style.height = (konosys[i]/max*90)+'%';
+    b2.style.background = 'var(--teal)';
+    b2.style.borderRadius = '4px 4px 0 0';
+    b2.style.flex = '1';
+    b2.setAttribute('data-tip', konosys[i]+' accès KONOSYS');
+
+    outer.appendChild(b1);
+    outer.appendChild(b2);
+
+    const x = document.createElement('div');
+    x.className = 'bar-x';
+    x.textContent = l;
+
+    col.appendChild(outer);
+    col.appendChild(x);
+    wrap.appendChild(col);
+  });
+})();
+
+// ── TOAST ─────────────────────────────────────────────
+function showToast(msg, type = 'info') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  const icons = { success:'✓', info:'ℹ', warn:'⚠' };
+  t.innerHTML = `<span class="toast-icon">${icons[type]||'ℹ'}</span>${msg}`;
+  c.appendChild(t);
+  requestAnimationFrame(() => { requestAnimationFrame(() => t.classList.add('show')); });
+  setTimeout(() => {
+    t.classList.remove('show');
+    setTimeout(() => t.remove(), 400);
+  }, 3500);
+}
+
+// ── QUICK AI (topbar) ──────────────────────────────────
+const dashResponses = [
+  '📊 Cette semaine : 8 432 connexions Moodle (+12%), 47 attestations KONOSYS générées, 2 alertes décrochage traitées. NeuralunA a économisé ~18h de travail administratif.',
+  '⚠️ Sonia Dridi (Droit L2) : 6 jours sans connexion Moodle, 41% de progression. Email de relance envoyé automatiquement. Conseiller pédagogique notifié.',
+  '📚 Le cours "IA & Machine Learning" affiche le meilleur taux d\'engagement : 234 inscrits, 78% de complétion. NeuralunA suggère un quiz de mi-parcours.',
+  '💰 Économies estimées vs Moodle + KONOSYS séparés : ~75 000 €/an sur licences + ~20 000 €/an sur maintenance externalisée.',
+];
+let dashIdx = 0;
+function quickAI() {
+  const inp = document.getElementById('quick-ai');
+  if (!inp.value.trim()) return;
+  inp.value = '';
+  showToast('⏳ NeuralunA analyse vos données…', 'info');
+  setTimeout(() => {
+    showToast(dashResponses[dashIdx % dashResponses.length], 'success');
+    dashIdx++;
+  }, 1400);
+}
+
+// ── NEURALUNA CHAT ─────────────────────────────────────
+const aiKB = {
+  rapport:   '📊 **Rapport Semaine du 9–13 mars 2026 :**\n\n• 8 432 connexions Moodle (+12% vs S-1)\n• Cours le + actif : IA & ML (234 étudiants, 78%)\n• 47 attestations KONOSYS générées auto\n• 2 étudiants à risque détectés et alertés\n• Économies estimées : ~75 000 €/an vs solutions séparées',
+  risque:    '⚠️ **Étudiants à risque détectés :**\n\n1. **Sonia Dridi** (Droit L2) — 6j sans connexion Moodle, 41% progression. Conseiller notifié ✓\n2. **Nour Sassi** (Biologie L3) — 4j sans connexion, 3/6 cours. Email envoyé ✓\n\n_Actions NeuralunA déclenchées automatiquement depuis les logs Moodle._',
+  quiz:      '📝 **Quiz IA généré — Droit des Affaires L2 :**\n\n1. Qu\'est-ce qu\'un contrat international selon la Convention de Vienne ?\n2. Quels sont les principes UNIDROIT applicables ?\n3. Définissez la clause compromissoire.\n4. Différence entre arbitrage CCI et CIRDI ?\n5. Qu\'est-ce que la lex mercatoria ?\n\n_Prêt à intégrer dans Moodle. Confirmer ?_',
+  attestation: '📄 **Attestation générée — Yasmine Benali :**\n\nL\'Université SESAME atteste que Mme Yasmine Benali, n° étudiant 2024-1234, est régulièrement inscrite en 3ème année Licence Informatique pour l\'année 2025-2026.\n\n_Document PDF signé électroniquement. Envoyé par email ✓_',
+  moodle:    '📚 **Données Moodle — lms.konosys.com/sesame :**\n\n• 86 cours actifs · 1 247 étudiants inscrits\n• Taux de complétion moyen : 78%\n• 8 432 connexions cette semaine\n• Cours le + populaire : IA & ML (234 inscrits)\n• Cours nécessitant attention : Biologie L3 (43%)',
+  konosys:   '🏛️ **Données KONOSYS — sesame.konosys.com :**\n\n• 1 247 dossiers étudiants (94% complets)\n• Moyenne générale promo : 14.2/20\n• 12 inscriptions en attente de validation\n• 342 certificats délivrés ce semestre\n• 3 filières : Informatique, Droit, Management',
+  default:   '🤔 Je n\'ai pas trouvé de réponse précise. Essayez : **"rapport"**, **"étudiants à risque"**, **"quiz"**, **"attestation Benali"**, **"données Moodle"** ou **"données KONOSYS"**.\n\nJe suis connecté en temps réel aux deux systèmes.',
+};
+
+function detectIntent(msg) {
+  const m = msg.toLowerCase();
+  if (m.includes('rapport') || m.includes('semaine') || m.includes('bilan')) return 'rapport';
+  if (m.includes('risque') || m.includes('décroch') || m.includes('alert')) return 'risque';
+  if (m.includes('quiz') || m.includes('question') || m.includes('créer')) return 'quiz';
+  if (m.includes('attestation') || m.includes('certif') || m.includes('document')) return 'attestation';
+  if (m.includes('moodle') || m.includes('cours') || m.includes('lms')) return 'moodle';
+  if (m.includes('konosys') || m.includes('scolarit') || m.includes('note') || m.includes('inscription')) return 'konosys';
+  if (m.includes('performance') || m.includes('analytics') || m.includes('stat')) return 'rapport';
+  return 'default';
+}
+
+function addMsg(text, role) {
+  const area = document.getElementById('chat-msgs');
+  const row = document.createElement('div');
+  row.className = `msg-row ${role}`;
+  const bub = document.createElement('div');
+  bub.className = 'msg-bubble';
+
+  if (role === 'ai') {
+    const from = document.createElement('div');
+    from.className = 'msg-sender';
+    from.textContent = 'NeuralunA · Université SESAME';
+    bub.appendChild(from);
+    const av = document.createElement('div');
+    av.className = 'avatar sm';
+    av.style.background = 'linear-gradient(135deg,var(--brand),var(--purple))';
+    av.textContent = 'N';
+    row.appendChild(av);
+    // Render markdown-lite
+    const content = document.createElement('span');
+    content.innerHTML = text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/_(.*?)_/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
+    bub.appendChild(content);
+  } else {
+    const content = document.createElement('span');
+    content.textContent = text;
+    bub.appendChild(content);
+  }
+
+  row.appendChild(bub);
+  area.appendChild(row);
+  area.scrollTop = area.scrollHeight;
+}
+
+function sendMsg() {
+  const inp = document.getElementById('chat-input');
+  const msg = inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  addMsg(msg, 'user');
+  const typing = document.getElementById('typing-row');
+  typing.style.display = 'block';
+  document.getElementById('chat-msgs').scrollTop = 99999;
+  const intent = detectIntent(msg);
+  setTimeout(() => {
+    typing.style.display = 'none';
+    addMsg(aiKB[intent], 'ai');
+  }, 1200 + Math.random() * 600);
+}
+
+function setPrompt(el) {
+  const inp = document.getElementById('chat-input');
+  inp.value = el.textContent.replace(/^[^\s]+\s/, ''); // strip emoji
+  inp.focus();
+}
+
+function clearChat() {
+  const area = document.getElementById('chat-msgs');
+  area.innerHTML = '';
+  addMsg('Conversation réinitialisée. Comment puis-je vous aider ?', 'ai');
+}
+
+// Enter on search
+document.getElementById('global-search').addEventListener('keydown', e => {
+  if (e.key === 'Enter') showToast('Recherche : "' + e.target.value + '" — 3 résultats trouvés', 'info');
+});
+</script>
+
+</body>
+</html>
