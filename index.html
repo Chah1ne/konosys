@@ -592,6 +592,32 @@
             background: var(--primary-blue-light);
         }
 
+        /* Floating Button */
+        .chatbot-floating-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--primary-blue));
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
         /* Attendance Table */
         .attendance-list {
             list-style: none;
@@ -1867,13 +1893,13 @@
     </div>
 
     <!-- NeuralLuna Chatbot Widget -->
-    <div class="chatbot-widget" id="chatbot">
+    <div class="chatbot-widget" id="chatbot" style="display: none;">
         <div class="chatbot-header">
             <div style="display: flex; align-items: center; gap: 8px;">
                 <span style="font-size: 18px;">🤖</span>
                 <span>NeuralLuna Assistant IA</span>
             </div>
-            <button style="background: none; border: none; color: white; cursor: pointer; font-size: 18px;" onclick="toggleChatbot()">−</button>
+            <button style="background: none; border: none; color: white; cursor: pointer; font-size: 18px; font-weight: bold;" onclick="closeChatbot()">✕</button>
         </div>
         <div class="chatbot-messages" id="messages">
             <div class="message ai">
@@ -1893,6 +1919,11 @@
             <button class="chatbot-button" onclick="sendMessage()">Envoyer</button>
         </div>
     </div>
+
+    <!-- NeuralLuna Floating Button -->
+    <button class="chatbot-floating-btn" id="floatingBtn" onclick="openChatbot()" title="Ouvrir NeuralLuna">
+        🤖
+    </button>
 
     <script>
         // Page Navigation
@@ -1978,18 +2009,18 @@
             }
         }
 
-        function toggleChatbot() {
+        function openChatbot() {
             const chatbot = document.getElementById('chatbot');
-            const messagesDiv = document.querySelector('.chatbot-messages');
-            const inputDiv = document.querySelector('.chatbot-input');
-            
-            if (messagesDiv.style.display !== 'none') {
-                messagesDiv.style.display = 'none';
-                inputDiv.style.display = 'none';
-            } else {
-                messagesDiv.style.display = 'flex';
-                inputDiv.style.display = 'flex';
-            }
+            const floatingBtn = document.getElementById('floatingBtn');
+            chatbot.style.display = 'flex';
+            floatingBtn.style.display = 'none';
+        }
+
+        function closeChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            const floatingBtn = document.getElementById('floatingBtn');
+            chatbot.style.display = 'none';
+            floatingBtn.style.display = 'flex';
         }
 
         // Initialize
