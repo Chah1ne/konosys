@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,8 +46,8 @@
         }
 
         ::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
+            width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -59,8 +59,8 @@
             border-radius: 99px;
         }
 
-        /* Layout */
-        .main-container {
+        /* Main Layout */
+        .app-container {
             display: flex;
             height: 100vh;
             background: var(--neutral-white);
@@ -68,27 +68,32 @@
 
         /* Sidebar */
         .sidebar {
-            width: 260px;
+            width: 280px;
             background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
             color: white;
             overflow-y: auto;
             box-shadow: var(--shadow-xl);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .sidebar-header {
             padding: 24px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section {
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 8px;
         }
 
-        .sidebar-logo {
+        .logo-icon {
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
@@ -97,86 +102,78 @@
             font-size: 20px;
         }
 
-        .sidebar-title {
-            font-size: 16px;
+        .logo-text h1 {
+            font-size: 18px;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            margin: 0;
         }
 
-        .sidebar-tagline {
+        .logo-text p {
             font-size: 11px;
-            opacity: 0.7;
-            margin-top: 4px;
+            opacity: 0.8;
+            margin: 2px 0 0 0;
         }
 
-        .sidebar-nav {
+        .user-profile {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            margin-top: 8px;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .nav-section {
             flex: 1;
-            padding: 16px 0;
+            padding: 20px 0;
             overflow-y: auto;
         }
 
-        .nav-section {
+        .nav-group {
             margin-bottom: 8px;
         }
 
-        .nav-section-title {
+        .nav-group-title {
+            padding: 8px 20px;
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 12px 20px;
-            opacity: 0.6;
+            font-weight: 600;
             text-transform: uppercase;
+            opacity: 0.6;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
         }
 
         .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 20px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-            font-size: 13px;
+            font-size: 14px;
+            opacity: 0.85;
         }
 
         .nav-item:hover {
+            opacity: 1;
             background: rgba(255, 255, 255, 0.1);
-            border-left-color: var(--secondary-teal-light);
         }
 
         .nav-item.active {
-            background: rgba(255, 255, 255, 0.15);
-            border-left-color: var(--secondary-teal-light);
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+            border-left: 3px solid white;
+            padding-left: 17px;
         }
 
         .nav-icon {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .sidebar-footer {
-            padding: 16px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 12px;
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         /* Main Content */
@@ -184,266 +181,225 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            overflow-y: auto;
-            background: var(--neutral-bg);
+            overflow: hidden;
         }
 
-        /* Header */
-        .header {
+        .topbar {
             background: var(--neutral-white);
-            padding: 16px 32px;
             border-bottom: 1px solid var(--neutral-light-gray);
+            padding: 16px 32px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            height: 70px;
             box-shadow: var(--shadow-sm);
         }
 
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            color: var(--neutral-medium-gray);
-        }
-
-        .breadcrumb span {
+        .topbar-left h2 {
+            font-size: 24px;
+            font-weight: 700;
             color: var(--neutral-text);
-            font-weight: 500;
         }
 
-        .header-actions {
+        .topbar-right {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
         }
 
         .search-box {
-            position: relative;
-            width: 220px;
+            display: flex;
+            align-items: center;
+            background: var(--neutral-bg);
+            border: 1px solid var(--neutral-light-gray);
+            border-radius: var(--radius-md);
+            padding: 8px 12px;
+            width: 250px;
         }
 
         .search-box input {
-            width: 100%;
-            padding: 8px 12px 8px 32px;
-            border: 1px solid var(--neutral-light-gray);
-            border-radius: var(--radius-md);
-            font-size: 13px;
-            transition: all 0.2s ease;
-        }
-
-        .search-box input:focus {
+            flex: 1;
+            border: none;
+            background: transparent;
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+            font-size: 13px;
         }
 
-        .search-icon {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--neutral-medium-gray);
-        }
-
-        .header-icons {
+        .user-menu {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
+            transition: background 0.2s;
         }
 
-        .icon-btn {
+        .user-menu:hover {
+            background: var(--neutral-bg);
+        }
+
+        .user-avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            border: none;
-            background: var(--neutral-light-gray);
-            cursor: pointer;
+            background: linear-gradient(135deg, var(--primary-blue-light), var(--secondary-teal));
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
-            font-size: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
         }
 
-        .icon-btn:hover {
-            background: var(--neutral-light-gray);
-            transform: scale(1.05);
-        }
-
-        .profile-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--neutral-light-gray);
-            background: var(--neutral-white);
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .profile-btn:hover {
-            border-color: var(--primary-blue);
-            background: rgba(29, 78, 216, 0.05);
-        }
-
-        /* Content Area */
-        .content {
-            padding: 32px;
+        .page-content {
             flex: 1;
+            overflow-y: auto;
+            padding: 32px;
         }
 
-        /* Page Title */
-        .page-title {
-            font-size: 28px;
+        /* Cards and Sections */
+        .card {
+            background: var(--neutral-white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-light-gray);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 8px;
             color: var(--neutral-text);
         }
 
-        .page-subtitle {
-            font-size: 14px;
-            color: var(--neutral-medium-gray);
-            margin-bottom: 32px;
+        .card-link {
+            color: var(--primary-blue);
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
         }
 
-        /* Metrics Grid */
-        .metrics-grid {
+        .card-link:hover {
+            color: var(--primary-blue-light);
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            margin-bottom: 32px;
         }
 
-        .metric-card {
-            background: var(--neutral-white);
-            padding: 24px;
-            border-radius: var(--radius-lg);
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* Metrics */
+        .metric-box {
+            background: linear-gradient(135deg, var(--neutral-white) 0%, var(--neutral-bg) 100%);
             border: 1px solid var(--neutral-light-gray);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .metric-card:hover {
-            border-color: var(--primary-blue);
+        .metric-box:hover {
             box-shadow: var(--shadow-md);
             transform: translateY(-2px);
         }
 
-        .metric-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--neutral-medium-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
         .metric-value {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--primary-blue);
             margin-bottom: 8px;
         }
 
-        .metric-change {
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .metric-label {
+            font-size: 13px;
+            color: var(--neutral-dark-gray);
+            font-weight: 500;
         }
 
-        .metric-change.positive {
+        .metric-box.success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%);
+        }
+
+        .metric-box.success .metric-value {
             color: var(--accent-green);
         }
 
-        .metric-change.negative {
-            color: var(--accent-red);
+        .metric-box.warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(245, 158, 11, 0.02) 100%);
         }
 
-        /* Content Sections */
-        .content-section {
-            margin-bottom: 32px;
+        .metric-box.warning .metric-value {
+            color: var(--accent-amber);
         }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--neutral-text);
-        }
-
-        .section-divider {
-            width: 3px;
-            height: 24px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
-            border-radius: 2px;
-        }
-
-        /* Course Grid */
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
+        /* Course Cards */
         .course-card {
             background: var(--neutral-white);
+            border: 1px solid var(--neutral-light-gray);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--neutral-light-gray);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             cursor: pointer;
         }
 
         .course-card:hover {
             box-shadow: var(--shadow-lg);
             transform: translateY(-4px);
-            border-color: var(--secondary-teal);
         }
 
         .course-header {
             height: 120px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-teal));
             display: flex;
-            align-items: flex-end;
-            padding: 20px;
+            align-items: center;
+            justify-content: center;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
-        }
-
-        .course-header.variant-2 {
-            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-amber) 100%);
-        }
-
-        .course-header.variant-3 {
-            background: linear-gradient(135deg, var(--accent-green) 0%, var(--secondary-teal) 100%);
+            padding: 16px;
+            text-align: center;
         }
 
         .course-body {
             padding: 20px;
         }
 
+        .course-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--neutral-text);
+            margin-bottom: 8px;
+        }
+
         .course-code {
             font-size: 12px;
             color: var(--neutral-medium-gray);
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .course-name {
-            font-size: 15px;
-            font-weight: 600;
             margin-bottom: 12px;
-            color: var(--neutral-text);
         }
 
         .course-progress {
@@ -451,138 +407,66 @@
         }
 
         .progress-bar {
-            width: 100%;
             height: 6px;
             background: var(--neutral-light-gray);
-            border-radius: 3px;
+            border-radius: 99px;
             overflow: hidden;
             margin-bottom: 4px;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
-            border-radius: 3px;
+            background: linear-gradient(90deg, var(--accent-green), var(--secondary-teal));
+            border-radius: 99px;
         }
 
         .progress-text {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--neutral-medium-gray);
         }
 
-        .course-actions {
+        .course-footer {
             display: flex;
-            gap: 8px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: var(--radius-md);
+            justify-content: space-between;
             font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
+            color: var(--neutral-medium-gray);
+            padding-top: 12px;
+            border-top: 1px solid var(--neutral-light-gray);
         }
 
-        .btn-primary {
-            background: var(--primary-blue);
-            color: white;
-            flex: 1;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-blue-dark);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-secondary {
-            background: var(--neutral-light-gray);
-            color: var(--neutral-text);
-            flex: 1;
-        }
-
-        .btn-secondary:hover {
-            background: var(--neutral-medium-gray);
-            color: white;
-        }
-
-        /* AI Chat Floating Button */
-        .ai-chat-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-teal) 100%);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 24px;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .ai-chat-btn:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Table */
-        .table-container {
-            background: var(--neutral-white);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--neutral-light-gray);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .table {
+        /* Tables */
+        table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 13px;
+            font-size: 14px;
         }
 
-        .table thead {
+        table th {
             background: var(--neutral-bg);
-            border-bottom: 2px solid var(--neutral-light-gray);
-        }
-
-        .table th {
-            padding: 16px;
+            padding: 12px;
             text-align: left;
             font-weight: 600;
             color: var(--neutral-dark-gray);
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--neutral-light-gray);
         }
 
-        .table td {
-            padding: 16px;
+        table td {
+            padding: 12px;
             border-bottom: 1px solid var(--neutral-light-gray);
         }
 
-        .table tbody tr:hover {
-            background: rgba(29, 78, 216, 0.02);
+        table tbody tr:hover {
+            background: var(--neutral-bg);
         }
 
         /* Badge */
         .badge {
             display: inline-block;
             padding: 4px 8px;
-            border-radius: 4px;
+            border-radius: var(--radius-sm);
             font-size: 11px;
             font-weight: 600;
+            text-transform: uppercase;
         }
 
         .badge-success {
@@ -600,445 +484,652 @@
             color: var(--accent-red);
         }
 
-        /* Hide sections */
-        .page {
-            display: none;
+        .badge-info {
+            background: rgba(29, 78, 216, 0.1);
+            color: var(--primary-blue);
         }
 
-        .page.active {
-            display: block;
+        /* Chatbot */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 380px;
+            height: 500px;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            border: 1px solid var(--neutral-light-gray);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--accent-purple), var(--primary-blue));
+            color: white;
+            padding: 16px;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: var(--neutral-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .message.user .message-content {
+            background: var(--primary-blue);
+            color: white;
+            border-radius: var(--radius-md) var(--radius-sm) var(--radius-sm) var(--radius-md);
+        }
+
+        .message.ai .message-content {
+            background: white;
+            color: var(--neutral-text);
+            border: 1px solid var(--neutral-light-gray);
+            border-radius: var(--radius-sm) var(--radius-md) var(--radius-md) var(--radius-sm);
+        }
+
+        .chatbot-input {
+            padding: 12px;
+            border-top: 1px solid var(--neutral-light-gray);
+            display: flex;
+            gap: 8px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            border: 1px solid var(--neutral-light-gray);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .chatbot-button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .chatbot-button:hover {
+            background: var(--primary-blue-light);
+        }
+
+        /* Floating Button */
+        .chatbot-floating-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--primary-blue));
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Attendance Table */
+        .attendance-list {
+            list-style: none;
+        }
+
+        .attendance-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid var(--neutral-light-gray);
+            font-size: 14px;
+        }
+
+        .attendance-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-blue-light);
+        }
+
+        .btn-secondary {
+            background: var(--neutral-bg);
+            color: var(--neutral-text);
+            border: 1px solid var(--neutral-light-gray);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neutral-light-gray);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
-                width: 220px;
+        @media (max-width: 1200px) {
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .grid-3 {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .main-container {
+            .app-container {
                 flex-direction: column;
             }
 
             .sidebar {
                 width: 100%;
                 height: auto;
-                max-height: 70px;
                 flex-direction: row;
+                overflow-x: auto;
             }
 
-            .sidebar-nav {
-                display: none;
+            .nav-section {
+                display: flex;
+                flex: 1;
+                overflow-x: auto;
             }
 
-            .sidebar-footer {
-                display: none;
-            }
-
-            .header {
-                flex-wrap: wrap;
+            .topbar {
+                flex-direction: column;
                 gap: 12px;
+                height: auto;
             }
 
-            .search-box {
-                width: 100%;
-                order: 3;
-            }
-
-            .breadcrumb {
-                order: 1;
-            }
-
-            .metrics-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .course-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .content {
+            .page-content {
                 padding: 16px;
             }
 
-            .page-title {
-                font-size: 20px;
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot-widget {
+                width: 100%;
+                height: 400px;
+                bottom: 0;
+                right: 0;
+                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
+    <div class="app-container">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <div class="sidebar">
             <div class="sidebar-header">
-                <div class="sidebar-logo">✨</div>
-                <div>
-                    <div class="sidebar-title">SmartSesame</div>
-                    <div class="sidebar-tagline">Plateforme unifiée</div>
+                <div class="logo-section">
+                    <div class="logo-icon">🎓</div>
+                    <div class="logo-text">
+                        <h1>SmartSesame</h1>
+                        <p>Université SESAME</p>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <strong>Chahine TSOURI</strong><br>
+                    Ingénieur Informatique TA
                 </div>
             </div>
 
-            <nav class="sidebar-nav">
-                <!-- Overview Section -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Vue d'ensemble</div>
-                    <div class="nav-item active" onclick="navigateTo('dashboard')">
+            <div class="nav-section">
+                <div class="nav-group">
+                    <div class="nav-group-title">Principal</div>
+                    <div class="nav-item active" onclick="switchPage('dashboard')">
                         <span class="nav-icon">📊</span>
-                        <span>Tableau de bord</span>
+                        <span>Tableau de Bord</span>
                     </div>
-                    <div class="nav-item" onclick="navigateTo('analytics')">
-                        <span class="nav-icon">📈</span>
-                        <span>Analyse</span>
-                    </div>
-                    <div class="nav-item" onclick="navigateTo('reports')">
-                        <span class="nav-icon">📋</span>
-                        <span>Rapports</span>
-                    </div>
-                </div>
-
-                <!-- Learning Section -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Apprentissage</div>
-                    <div class="nav-item" onclick="navigateTo('courses')">
+                    <div class="nav-item" onclick="switchPage('courses')">
                         <span class="nav-icon">📚</span>
-                        <span>Mes cours</span>
-                    </div>
-                    <div class="nav-item" onclick="navigateTo('assignments')">
-                        <span class="nav-icon">✏️</span>
-                        <span>Travaux</span>
-                    </div>
-                    <div class="nav-item" onclick="navigateTo('resources')">
-                        <span class="nav-icon">📁</span>
-                        <span>Ressources</span>
+                        <span>Mes Cours</span>
                     </div>
                 </div>
 
-                <!-- Students Section -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Étudiants</div>
-                    <div class="nav-item" onclick="navigateTo('students')">
-                        <span class="nav-icon">👥</span>
-                        <span>Répertoire</span>
+                <div class="nav-group">
+                    <div class="nav-group-title">Apprentissage</div>
+                    <div class="nav-item" onclick="switchPage('modules')">
+                        <span class="nav-icon">📖</span>
+                        <span>Modules & Contenus</span>
                     </div>
-                    <div class="nav-item" onclick="navigateTo('performance')">
-                        <span class="nav-icon">⭐</span>
-                        <span>Performance</span>
+                    <div class="nav-item" onclick="switchPage('assignments')">
+                        <span class="nav-icon">✏️</span>
+                        <span>Devoirs & Projets</span>
                     </div>
-                    <div class="nav-item" onclick="navigateTo('attendance')">
-                        <span class="nav-icon">📍</span>
+                    <div class="nav-item" onclick="switchPage('schedule')">
+                        <span class="nav-icon">📅</span>
+                        <span>Emploi du Temps</span>
+                    </div>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-group-title">Académique</div>
+                    <div class="nav-item" onclick="switchPage('grades')">
+                        <span class="nav-icon">📈</span>
+                        <span>Notes & Résultats</span>
+                    </div>
+                    <div class="nav-item" onclick="switchPage('attendance')">
+                        <span class="nav-icon">✓</span>
                         <span>Présences</span>
                     </div>
-                </div>
-
-                <!-- Academic Records -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Dossier académique</div>
-                    <div class="nav-item" onclick="navigateTo('grades')">
-                        <span class="nav-icon">📊</span>
-                        <span>Notes</span>
-                    </div>
-                    <div class="nav-item" onclick="navigateTo('transcripts')">
-                        <span class="nav-icon">📄</span>
-                        <span>Relevés</span>
-                    </div>
-                    <div class="nav-item" onclick="navigateTo('certificates')">
-                        <span class="nav-icon">🏆</span>
-                        <span>Certificats</span>
+                    <div class="nav-item" onclick="switchPage('transcript')">
+                        <span class="nav-icon">📋</span>
+                        <span>Relevé Académique</span>
                     </div>
                 </div>
 
-                <!-- Communication -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Communication</div>
-                    <div class="nav-item" onclick="navigateTo('ai-assistant')">
-                        <span class="nav-icon">🤖</span>
-                        <span>NeuralunA</span>
-                    </div>
-                    <div class="nav-item" onclick="navigateTo('messages')">
+                <div class="nav-group">
+                    <div class="nav-group-title">Communication</div>
+                    <div class="nav-item" onclick="switchPage('messages')">
                         <span class="nav-icon">💬</span>
-                        <span>Messages</span>
+                        <span>Messages (3)</span>
                     </div>
-                    <div class="nav-item" onclick="navigateTo('announcements')">
+                    <div class="nav-item" onclick="switchPage('announcements')">
                         <span class="nav-icon">📢</span>
                         <span>Annonces</span>
                     </div>
                 </div>
 
-                <!-- Administration -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Administration</div>
-                    <div class="nav-item" onclick="navigateTo('settings')">
+                <div class="nav-group">
+                    <div class="nav-group-title">Administration</div>
+                    <div class="nav-item" onclick="switchPage('profile')">
+                        <span class="nav-icon">👤</span>
+                        <span>Mon Profil</span>
+                    </div>
+                    <div class="nav-item" onclick="switchPage('documents')">
+                        <span class="nav-icon">📄</span>
+                        <span>Documents</span>
+                    </div>
+                    <div class="nav-item" onclick="switchPage('settings')">
                         <span class="nav-icon">⚙️</span>
                         <span>Paramètres</span>
                     </div>
-                    <div class="nav-item" onclick="navigateTo('sso')">
-                        <span class="nav-icon">🔐</span>
-                        <span>SSO</span>
-                    </div>
-                </div>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div class="user-avatar">CT</div>
-                <div>
-                    <div style="font-weight: 600;">Chahine TSOURI</div>
-                    <div style="opacity: 0.8; font-size: 11px;">Admin</div>
                 </div>
             </div>
-        </aside>
+        </div>
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <div class="breadcrumb">
-                    <span>SmartSesame</span>
-                    <span>/</span>
-                    <span id="breadcrumb-current">Tableau de bord</span>
+            <!-- Top Bar -->
+            <div class="topbar">
+                <div class="topbar-left">
+                    <h2 id="page-title">Tableau de Bord</h2>
                 </div>
-
-                <div class="header-actions">
+                <div class="topbar-right">
                     <div class="search-box">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" placeholder="Rechercher...">
+                        <input type="text" placeholder="Rechercher cours, modules...">
                     </div>
-
-                    <div class="header-icons">
-                        <button class="icon-btn">🔔</button>
-                        <button class="icon-btn">❓</button>
-                        <button class="profile-btn">
-                            <span>CT</span>
-                            <span>▼</span>
-                        </button>
+                    <div class="user-menu">
+                        <div class="user-avatar">CT</div>
+                        <span>Chahine T.</span>
                     </div>
                 </div>
-            </header>
+            </div>
 
-            <!-- Content -->
-            <div class="content">
+            <!-- Page Content -->
+            <div class="page-content">
                 <!-- Dashboard Page -->
-                <div class="page active" id="dashboard">
-                    <h1 class="page-title">Tableau de bord</h1>
-                    <p class="page-subtitle">Bienvenue, Chahine ! Voici un aperçu de votre plateforme académique unifiée</p>
-
-                    <!-- Metrics Grid -->
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Étudiants actifs</div>
-                            <div class="metric-value">2,847</div>
-                            <div class="metric-change positive">↑ 12% depuis la semaine dernière</div>
+                <div id="page-dashboard" class="page-section" style="display: block;">
+                    <div class="grid-4">
+                        <div class="metric-box success">
+                            <div class="metric-value">7</div>
+                            <div class="metric-label">Cours Actifs</div>
                         </div>
-
-                        <div class="metric-card">
-                            <div class="metric-label">Taux de complétion</div>
-                            <div class="metric-value">78%</div>
-                            <div class="metric-change positive">↑ 5% ce mois</div>
+                        <div class="metric-box">
+                            <div class="metric-value">85.3</div>
+                            <div class="metric-label">Moyenne Générale</div>
                         </div>
-
-                        <div class="metric-card">
-                            <div class="metric-label">Cours actifs</div>
-                            <div class="metric-value">24</div>
-                            <div class="metric-change">Moodle + KONOSYS</div>
+                        <div class="metric-box warning">
+                            <div class="metric-value">2</div>
+                            <div class="metric-label">Absences</div>
                         </div>
-
-                        <div class="metric-card">
-                            <div class="metric-label">Moyenne générale</div>
-                            <div class="metric-value">14.8</div>
-                            <div class="metric-change positive">↑ 0.6 point</div>
+                        <div class="metric-box">
+                            <div class="metric-value">45/52</div>
+                            <div class="metric-label">Séances Présentes</div>
                         </div>
                     </div>
 
-                    <!-- AI Insights Section -->
-                    <div class="content-section">
-                        <div class="section-title">
-                            <div class="section-divider"></div>
-                            <span>💡 Insights Intelligents par NeuralunA</span>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Cours en Cours</h3>
+                            <a class="card-link" onclick="switchPage('courses')">Voir tous →</a>
                         </div>
-
-                        <div class="course-grid">
-                            <div class="metric-card">
-                                <div class="metric-label">🎯 Recommandation Prioritaire</div>
-                                <div style="margin: 12px 0; font-weight: 600; color: var(--primary-blue);">Intervention requise - 3 étudiants à risque</div>
-                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 12px;">Les étudiants montrent des signes de décrochage. NeuralunA recommande un suivi personnalisé.</p>
-                                <button class="btn btn-primary">Voir les détails</button>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-label">📊 Tendance d'Apprentissage</div>
-                                <div style="margin: 12px 0; font-weight: 600; color: var(--accent-green);">Engagement en hausse</div>
-                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 12px;">Les sessions d'apprentissage interactif augmentent de 23%. Continuez cette dynamique !</p>
-                                <button class="btn btn-primary">Analyser</button>
-                            </div>
-
-                            <div class="metric-card">
-                                <div class="metric-label">🚀 Opportunité d'Optimisation</div>
-                                <div style="margin: 12px 0; font-weight: 600; color: var(--accent-amber);">Amélioration détectée</div>
-                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 12px;">L'utilisation des modules interactifs pourrait augmenter les résultats de 18%.</p>
-                                <button class="btn btn-primary">Implémenter</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Unified Courses -->
-                    <div class="content-section">
-                        <div class="section-title">
-                            <div class="section-divider"></div>
-                            <span>Mes Cours (Moodle + KONOSYS)</span>
-                        </div>
-
-                        <div class="course-grid">
+                        <div class="grid-3">
                             <div class="course-card">
-                                <div class="course-header">Management des entreprises</div>
+                                <div class="course-header">Gestion d'Entreprise</div>
                                 <div class="course-body">
+                                    <div class="course-title">Gestion d'Entreprise</div>
                                     <div class="course-code">INGTA2-D-S1</div>
-                                    <div class="course-name">Management des entreprises</div>
                                     <div class="course-progress">
                                         <div class="progress-bar">
                                             <div class="progress-fill" style="width: 75%;"></div>
                                         </div>
                                         <div class="progress-text">75% complété</div>
                                     </div>
-                                    <div class="course-actions">
-                                        <button class="btn btn-primary">Continuer</button>
-                                        <button class="btn btn-secondary">Notes</button>
+                                    <div class="course-footer">
+                                        <span>6 modules</span>
+                                        <span>3 devoirs</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="course-card">
-                                <div class="course-header variant-2">Base de données INGTA1-D-S1</div>
+                                <div class="course-header">Marketing INGTA2-D-S2</div>
                                 <div class="course-body">
-                                    <div class="course-code">INGTA1-D-S1</div>
-                                    <div class="course-name">Fondements de la Base de données</div>
+                                    <div class="course-title">Marketing</div>
+                                    <div class="course-code">INGTA2-D-S2</div>
                                     <div class="course-progress">
                                         <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 90%;"></div>
+                                            <div class="progress-fill" style="width: 60%;"></div>
                                         </div>
-                                        <div class="progress-text">90% complété</div>
+                                        <div class="progress-text">60% complété</div>
                                     </div>
-                                    <div class="course-actions">
-                                        <button class="btn btn-primary">Quiz Final</button>
-                                        <button class="btn btn-secondary">Ressources</button>
+                                    <div class="course-footer">
+                                        <span>8 modules</span>
+                                        <span>5 devoirs</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="course-card">
-                                <div class="course-header variant-3">IA et Machine Learning</div>
+                                <div class="course-header">Analyse Numérique Avancée</div>
                                 <div class="course-body">
+                                    <div class="course-title">Analyse Numérique Avancée</div>
                                     <div class="course-code">INGTA2-D-S1</div>
-                                    <div class="course-name">Fondements de l'IA et ML</div>
                                     <div class="course-progress">
                                         <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 65%;"></div>
+                                            <div class="progress-fill" style="width: 0%;"></div>
                                         </div>
-                                        <div class="progress-text">65% complété</div>
+                                        <div class="progress-text">0% complété</div>
                                     </div>
-                                    <div class="course-actions">
-                                        <button class="btn btn-primary">Continuer</button>
-                                        <button class="btn btn-secondary">Devoir</button>
+                                    <div class="course-footer">
+                                        <span>7 modules</span>
+                                        <span>4 devoirs</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Recent Activity -->
-                    <div class="content-section">
-                        <div class="section-title">
-                            <div class="section-divider"></div>
-                            <span>Activité Récente</span>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Tâches Récentes & Devoirs Imminents</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Devoir</th>
+                                    <th>Cours</th>
+                                    <th>Statut</th>
+                                    <th>Date Limite</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Étude de Cas - Stratégie Marketing</strong></td>
+                                    <td>Marketing INGTA2-D-S2</td>
+                                    <td><span class="badge badge-success">Remis</span></td>
+                                    <td>15 Mars 2026</td>
+                                    <td><strong>18/20</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rapport Analyse Financière</strong></td>
+                                    <td>Gestion d'Entreprise INGTA2-D-S1</td>
+                                    <td><span class="badge badge-success">Remis</span></td>
+                                    <td>12 Mars 2026</td>
+                                    <td><strong>16/20</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Projet Base de Données</strong></td>
+                                    <td>Base de Données INGTA1-D-S1</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                    <td>20 Mars 2026</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Quiz - Architecture Dotnet</strong></td>
+                                    <td>Architecture Dotnet INGTA2-D-S2</td>
+                                    <td><span class="badge badge-info">À faire</span></td>
+                                    <td>18 Mars 2026</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Annonces Récentes</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                <div style="padding: 12px; background: rgba(16, 185, 129, 0.05); border-left: 3px solid var(--accent-green); border-radius: var(--radius-sm);">
+                                    <strong style="display: block; margin-bottom: 4px;">Modification Horaire</strong>
+                                    <small style="color: var(--neutral-medium-gray);">Le cours de Marketing est déplacé au lundi 10h00</small>
+                                </div>
+                                <div style="padding: 12px; background: rgba(245, 158, 11, 0.05); border-left: 3px solid var(--accent-amber); border-radius: var(--radius-sm);">
+                                    <strong style="display: block; margin-bottom: 4px;">Résultats de Contrôle</strong>
+                                    <small style="color: var(--neutral-medium-gray);">Consulter vos notes du contrôle continu</small>
+                                </div>
+                                <div style="padding: 12px; background: rgba(29, 78, 216, 0.05); border-left: 3px solid var(--primary-blue); border-radius: var(--radius-sm);">
+                                    <strong style="display: block; margin-bottom: 4px;">Nouveau Contenu</strong>
+                                    <small style="color: var(--neutral-medium-gray);">Fondements de l'IA - Module 4 disponible</small>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="table-container">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Étudiant</th>
-                                        <th>Cours</th>
-                                        <th>Activité</th>
-                                        <th>Statut</th>
-                                        <th>Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mohammed Alaoui</td>
-                                        <td>Management des entreprises</td>
-                                        <td>Quiz complété</td>
-                                        <td><span class="badge badge-success">Réussi</span></td>
-                                        <td>Aujourd'hui</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Fatima Bennani</td>
-                                        <td>Base de données INGTA1</td>
-                                        <td>Devoir soumis</td>
-                                        <td><span class="badge badge-success">Soumis</span></td>
-                                        <td>Hier</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ahmed Mansouri</td>
-                                        <td>Fondements de l'IA</td>
-                                        <td>Module en cours</td>
-                                        <td><span class="badge badge-warning">En attente</span></td>
-                                        <td>Hier</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Safiya Hamidi</td>
-                                        <td>Cybersécurité</td>
-                                        <td>Retard détecté</td>
-                                        <td><span class="badge badge-danger">À risque</span></td>
-                                        <td>Il y a 2 jours</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Présences (Dernier Mois)</h3>
+                            </div>
+                            <div style="display: flex; justify-content: space-around; align-items: center; padding: 20px 0;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 28px; font-weight: 700; color: var(--accent-green);">45</div>
+                                    <div style="font-size: 12px; color: var(--neutral-medium-gray);">Présences</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 28px; font-weight: 700; color: var(--accent-red);">2</div>
+                                    <div style="font-size: 12px; color: var(--neutral-medium-gray);">Absences</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-size: 28px; font-weight: 700; color: var(--accent-amber);">5</div>
+                                    <div style="font-size: 12px; color: var(--neutral-medium-gray);">Retards</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Courses Page -->
-                <div class="page" id="courses">
-                    <h1 class="page-title">Mes Cours</h1>
-                    <p class="page-subtitle">Visualisez tous vos cours Moodle et modules KONOSYS</p>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Cours Moodle</div>
-                            <div class="metric-value">12</div>
+                <div id="page-courses" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Tous les Cours (7)</h3>
                         </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Modules KONOSYS</div>
-                            <div class="metric-value">8</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">En attente</div>
-                            <div class="metric-value">3</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Complétés</div>
-                            <div class="metric-value">5</div>
-                        </div>
-                    </div>
-
-                    <div class="content-section">
-                        <div class="section-title">
-                            <div class="section-divider"></div>
-                            <span>Tous les Cours</span>
-                        </div>
-                        <div class="course-grid">
+                        <div class="grid-3">
                             <div class="course-card">
-                                <div class="course-header">Management</div>
+                                <div class="course-header" style="background: linear-gradient(135deg, #3b82f6, #06b6d4);">Gestion d'Entreprise</div>
                                 <div class="course-body">
-                                    <div class="course-code">CODE-001</div>
-                                    <div class="course-name">Management des entreprises</div>
-                                    <div class="course-actions">
-                                        <button class="btn btn-primary">Accéder</button>
+                                    <div class="course-title">Gestion d'Entreprise</div>
+                                    <div class="course-code">INGTA2-D-S1</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 75%;"></div>
+                                        </div>
+                                        <div class="progress-text">75% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 1 · 6 modules · 3 devoirs
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-header" style="background: linear-gradient(135deg, #8b5cf6, #3b82f6);">Marketing</div>
+                                <div class="course-body">
+                                    <div class="course-title">Marketing</div>
+                                    <div class="course-code">INGTA2-D-S2</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 60%;"></div>
+                                        </div>
+                                        <div class="progress-text">60% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 2 · 8 modules · 5 devoirs
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-header" style="background: linear-gradient(135deg, #f59e0b, #3b82f6);">Analyse Numérique</div>
+                                <div class="course-body">
+                                    <div class="course-title">Analyse Numérique Avancée</div>
+                                    <div class="course-code">INGTA2-D-S1</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%;"></div>
+                                        </div>
+                                        <div class="progress-text">0% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 1 · 7 modules · 4 devoirs
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-header" style="background: linear-gradient(135deg, #10b981, #06b6d4);">Architecture Dotnet</div>
+                                <div class="course-body">
+                                    <div class="course-title">Architecture Dotnet</div>
+                                    <div class="course-code">INGTA2-D-S2</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 82%;"></div>
+                                        </div>
+                                        <div class="progress-text">82% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 2 · 5 modules · 3 devoirs
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-header" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">Base de Données</div>
+                                <div class="course-body">
+                                    <div class="course-title">Base de Données Avancée</div>
+                                    <div class="course-code">INGTA1-D-S1</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 88%;"></div>
+                                        </div>
+                                        <div class="progress-text">88% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 1 · 9 modules · 6 devoirs
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-header" style="background: linear-gradient(135deg, #14b8a6, #3b82f6);">Fondements IA</div>
+                                <div class="course-body">
+                                    <div class="course-title">Fondements de l'IA et ML</div>
+                                    <div class="course-code">INGTA1-D-S1</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 45%;"></div>
+                                        </div>
+                                        <div class="progress-text">45% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 1 · 7 modules · 4 devoirs
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-card">
+                                <div class="course-header" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">Cybersécurité</div>
+                                <div class="course-body">
+                                    <div class="course-title">Fondements de la Cybersécurité</div>
+                                    <div class="course-code">INGTA2-D-S2</div>
+                                    <div class="course-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 92%;"></div>
+                                        </div>
+                                        <div class="progress-text">92% complété</div>
+                                    </div>
+                                    <div style="margin-top: 12px; font-size: 12px; color: var(--neutral-medium-gray);">
+                                        Semestre 2 · 6 modules · 4 devoirs
                                     </div>
                                 </div>
                             </div>
@@ -1046,36 +1137,207 @@
                     </div>
                 </div>
 
-                <!-- Students Page -->
-                <div class="page" id="students">
-                    <h1 class="page-title">Répertoire des Étudiants</h1>
-                    <p class="page-subtitle">Gérez et suivez vos étudiants</p>
-
-                    <div class="table-container">
-                        <table class="table">
+                <!-- Modules Page -->
+                <div id="page-modules" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Modules & Contenus Pédagogiques</h3>
+                        </div>
+                        <table>
                             <thead>
                                 <tr>
-                                    <th>Nom</th>
-                                    <th>Email</th>
-                                    <th>Programme</th>
-                                    <th>Statut</th>
-                                    <th>Score</th>
+                                    <th>Module</th>
+                                    <th>Cours</th>
+                                    <th>Progrès</th>
+                                    <th>Contenu</th>
+                                    <th>Durée</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Mohammed Alaoui</td>
-                                    <td>m.alaoui@example.com</td>
-                                    <td>Ingénieur TA2</td>
-                                    <td><span class="badge badge-success">Actif</span></td>
-                                    <td>87%</td>
+                                    <td><strong>Module 1: Fondamentaux</strong></td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td><span class="badge badge-success">Complété</span></td>
+                                    <td>4 leçons, 2 quizzes</td>
+                                    <td>4h30</td>
                                 </tr>
                                 <tr>
-                                    <td>Fatima Bennani</td>
-                                    <td>f.bennani@example.com</td>
-                                    <td>Ingénieur TA2</td>
-                                    <td><span class="badge badge-success">Actif</span></td>
-                                    <td>92%</td>
+                                    <td><strong>Module 2: Stratégie</strong></td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td><span class="badge badge-success">Complété</span></td>
+                                    <td>3 leçons, 1 quiz</td>
+                                    <td>3h15</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Module 3: Ressources Humaines</strong></td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                    <td>5 leçons, 2 quizzes</td>
+                                    <td>5h45</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Module 1: Introduction Marketing</strong></td>
+                                    <td>Marketing</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                    <td>6 leçons, 1 devoir</td>
+                                    <td>6h</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Module 1: Analyse Numérique</strong></td>
+                                    <td>Analyse Numérique Avancée</td>
+                                    <td><span class="badge badge-info">À faire</span></td>
+                                    <td>7 leçons, 3 quizzes</td>
+                                    <td>7h30</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Assignments Page -->
+                <div id="page-assignments" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Devoirs & Projets</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Titre</th>
+                                    <th>Cours</th>
+                                    <th>Type</th>
+                                    <th>Statut</th>
+                                    <th>Date Limite</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Étude de Cas - Stratégie</strong></td>
+                                    <td>Marketing</td>
+                                    <td>Devoir</td>
+                                    <td><span class="badge badge-success">Remis</span></td>
+                                    <td>15 Mars</td>
+                                    <td><strong style="color: var(--accent-green);">18/20</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Rapport Analyse Financière</strong></td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td>Devoir</td>
+                                    <td><span class="badge badge-success">Remis</span></td>
+                                    <td>12 Mars</td>
+                                    <td><strong style="color: var(--accent-green);">16/20</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Projet Base de Données</strong></td>
+                                    <td>Base de Données</td>
+                                    <td>Projet</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                    <td>20 Mars</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Quiz - Architecture Dotnet</strong></td>
+                                    <td>Architecture Dotnet</td>
+                                    <td>Quiz</td>
+                                    <td><span class="badge badge-info">À faire</span></td>
+                                    <td>18 Mars</td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Préentation Cas d'Usage IA</strong></td>
+                                    <td>Fondements IA</td>
+                                    <td>Présentation</td>
+                                    <td><span class="badge badge-info">À faire</span></td>
+                                    <td>25 Mars</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Schedule Page -->
+                <div id="page-schedule" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Emploi du Temps - Semaine du 17 Mars 2026</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Jour</th>
+                                    <th>Heure</th>
+                                    <th>Cours</th>
+                                    <th>Salle</th>
+                                    <th>Enseignant</th>
+                                    <th>Statut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Lundi</strong></td>
+                                    <td>09:00 - 11:00</td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td>Amphi A-102</td>
+                                    <td>Dr. Bennani</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lundi</strong></td>
+                                    <td>14:00 - 16:00</td>
+                                    <td>Marketing</td>
+                                    <td>Salle 203</td>
+                                    <td>Prof. Cherkaoui</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mardi</strong></td>
+                                    <td>10:00 - 12:00</td>
+                                    <td>Base de Données Avancée</td>
+                                    <td>Lab-5</td>
+                                    <td>Ing. Boukhriss</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mardi</strong></td>
+                                    <td>14:00 - 16:00</td>
+                                    <td>Analyse Numérique</td>
+                                    <td>Amphi C-101</td>
+                                    <td>Dr. Azaiez</td>
+                                    <td><span class="badge badge-danger">Absent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mercredi</strong></td>
+                                    <td>09:00 - 11:00</td>
+                                    <td>Fondements IA</td>
+                                    <td>Lab-7</td>
+                                    <td>Prof. Tabti</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Jeudi</strong></td>
+                                    <td>10:00 - 12:00</td>
+                                    <td>Architecture Dotnet</td>
+                                    <td>Lab-3</td>
+                                    <td>Ing. Khaled</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Jeudi</strong></td>
+                                    <td>15:00 - 17:00</td>
+                                    <td>Cybersécurité</td>
+                                    <td>Amphi B-205</td>
+                                    <td>Dr. Bouguessa</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vendredi</strong></td>
+                                    <td>09:00 - 11:00</td>
+                                    <td>Projet Intégré</td>
+                                    <td>Salle Projet</td>
+                                    <td>Équipe Tuteur</td>
+                                    <td><span class="badge badge-success">Présent</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1083,275 +1345,690 @@
                 </div>
 
                 <!-- Grades Page -->
-                <div class="page" id="grades">
-                    <h1 class="page-title">Notes et Résultats</h1>
-                    <p class="page-subtitle">Consultez les notes et résultats académiques</p>
-
-                    <div class="table-container">
-                        <table class="table">
+                <div id="page-grades" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Notes & Résultats Académiques</h3>
+                        </div>
+                        <table>
                             <thead>
                                 <tr>
-                                    <th>Étudiant</th>
                                     <th>Cours</th>
-                                    <th>Contrôle</th>
-                                    <th>TP</th>
+                                    <th>CC1</th>
+                                    <th>CC2</th>
                                     <th>Examen</th>
-                                    <th>Moyenne</th>
+                                    <th>Note Finale</th>
+                                    <th>Résultat</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Mohammed Alaoui</td>
-                                    <td>INGTA2-D-S1</td>
-                                    <td>16</td>
-                                    <td>15</td>
-                                    <td>17</td>
-                                    <td>16</td>
+                                    <td><strong>Gestion d'Entreprise (INGTA2-D-S1)</strong></td>
+                                    <td>17/20</td>
+                                    <td>16/20</td>
+                                    <td>17/20</td>
+                                    <td><strong style="color: var(--accent-green); font-size: 16px;">16.7/20</strong></td>
+                                    <td><span class="badge badge-success">Validé</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Marketing (INGTA2-D-S2)</strong></td>
+                                    <td>18/20</td>
+                                    <td>17/20</td>
+                                    <td>En cours</td>
+                                    <td><strong style="color: var(--accent-amber);">17.5/20*</strong></td>
+                                    <td><span class="badge badge-info">En cours</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Base de Données Avancée (INGTA1-D-S1)</strong></td>
+                                    <td>19/20</td>
+                                    <td>18/20</td>
+                                    <td>19/20</td>
+                                    <td><strong style="color: var(--accent-green); font-size: 16px;">18.7/20</strong></td>
+                                    <td><span class="badge badge-success">Validé</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Fondements IA (INGTA1-D-S1)</strong></td>
+                                    <td>15/20</td>
+                                    <td>16/20</td>
+                                    <td>En cours</td>
+                                    <td><strong style="color: var(--accent-amber);">15.5/20*</strong></td>
+                                    <td><span class="badge badge-info">En cours</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Architecture Dotnet (INGTA2-D-S2)</strong></td>
+                                    <td>17/20</td>
+                                    <td>18/20</td>
+                                    <td>En cours</td>
+                                    <td><strong style="color: var(--accent-amber);">17.5/20*</strong></td>
+                                    <td><span class="badge badge-info">En cours</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Analyse Numérique (INGTA2-D-S1)</strong></td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><span class="badge badge-info">À venir</span></td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-
-                <!-- AI Assistant Page -->
-                <div class="page" id="ai-assistant">
-                    <h1 class="page-title">NeuralunA - Assistant IA</h1>
-                    <p class="page-subtitle">Posez vos questions et recevez des réponses intelligentes</p>
-
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); height: 500px; display: flex; align-items: center; justify-content: center;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 48px; margin-bottom: 16px;">🤖</div>
-                            <h2 style="font-size: 20px; margin-bottom: 8px;">NeuralunA</h2>
-                            <p style="color: var(--neutral-medium-gray);">Assistant IA pour vos besoins académiques</p>
-                            <div style="margin-top: 24px;">
-                                <input type="text" placeholder="Posez votre question..." style="width: 100%; max-width: 400px; padding: 12px 16px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md); font-size: 14px;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Settings Page -->
-                <div class="page" id="settings">
-                    <h1 class="page-title">Paramètres</h1>
-                    <p class="page-subtitle">Configurez votre compte et vos préférences</p>
-
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Paramètres généraux</h3>
-                        <p style="color: var(--neutral-medium-gray);">Les paramètres de votre compte seront disponibles ici.</p>
-                    </div>
-                </div>
-
-                <!-- Analytics Page -->
-                <div class="page" id="analytics">
-                    <h1 class="page-title">Analyse Avancée</h1>
-                    <p class="page-subtitle">Explorez les analytics détaillées de votre plateforme</p>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Engagements</div>
-                            <div class="metric-value">12.5K</div>
-                            <div class="metric-change positive">↑ 24%</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Temps moyen</div>
-                            <div class="metric-value">34m</div>
-                            <div class="metric-change positive">↑ 5m</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reports Page -->
-                <div class="page" id="reports">
-                    <h1 class="page-title">Rapports</h1>
-                    <p class="page-subtitle">Générez et consultez les rapports institutionnels</p>
-
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Les rapports seront générés et disponibles ici.</p>
-                    </div>
-                </div>
-
-                <!-- Assignments Page -->
-                <div class="page" id="assignments">
-                    <h1 class="page-title">Travaux et Devoirs</h1>
-                    <p class="page-subtitle">Consultez et gérez vos travaux</p>
-
-                    <div class="table-container">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Titre</th>
-                                    <th>Cours</th>
-                                    <th>Date limite</th>
-                                    <th>Statut</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Devoir 1 - Bases de données</td>
-                                    <td>INGTA1-D-S1</td>
-                                    <td>20/03/2026</td>
-                                    <td><span class="badge badge-success">Complété</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Resources Page -->
-                <div class="page" id="resources">
-                    <h1 class="page-title">Ressources</h1>
-                    <p class="page-subtitle">Accédez aux documents et matériels de cours</p>
-
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Vos ressources pédagogiques seront listées ici.</p>
-                    </div>
-                </div>
-
-                <!-- Performance Page -->
-                <div class="page" id="performance">
-                    <h1 class="page-title">Performance Étudiante</h1>
-                    <p class="page-subtitle">Analysez la performance académique</p>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Moyenne de classe</div>
-                            <div class="metric-value">14.8</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Excellence</div>
-                            <div class="metric-value">12%</div>
+                        <div style="margin-top: 16px; padding: 12px; background: var(--neutral-bg); border-radius: var(--radius-md);">
+                            <strong>Moyenne Générale Actuelle: 17.2/20 (Excellent)</strong>
+                            <p style="font-size: 12px; color: var(--neutral-medium-gray); margin-top: 4px;">* Moyenne provisoire basée sur CC et partiels</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Attendance Page -->
-                <div class="page" id="attendance">
-                    <h1 class="page-title">Gestion des Présences</h1>
-                    <p class="page-subtitle">Consultez les dossiers de présence</p>
+                <div id="page-attendance" class="page-section" style="display: none;">
+                    <div class="grid-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Résumé Présences</h3>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 16px;">
+                                <div style="padding: 12px; background: rgba(16, 185, 129, 0.05); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Présences</span>
+                                        <strong style="font-size: 20px; color: var(--accent-green);">45</strong>
+                                    </div>
+                                </div>
+                                <div style="padding: 12px; background: rgba(239, 68, 68, 0.05); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Absences</span>
+                                        <strong style="font-size: 20px; color: var(--accent-red);">2</strong>
+                                    </div>
+                                </div>
+                                <div style="padding: 12px; background: rgba(245, 158, 11, 0.05); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Retards</span>
+                                        <strong style="font-size: 20px; color: var(--accent-amber);">5</strong>
+                                    </div>
+                                </div>
+                                <div style="padding: 12px; background: var(--neutral-bg); border-radius: var(--radius-md);">
+                                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                                        <span>Taux de Présence</span>
+                                        <strong style="font-size: 20px; color: var(--primary-blue);">86.5%</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="table-container">
-                        <table class="table">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Absences Justifiées</h3>
+                            </div>
+                            <ul class="attendance-list">
+                                <li class="attendance-item">
+                                    <span>Mardi 16 Mars - Analyse Numérique</span>
+                                    <span class="badge badge-warning">Justifiée</span>
+                                </li>
+                                <li class="attendance-item">
+                                    <span>Mercredi 10 Mars - Fondements IA</span>
+                                    <span class="badge badge-warning">Justifiée</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Détail Mensuel par Cours</h3>
+                        </div>
+                        <table>
                             <thead>
                                 <tr>
-                                    <th>Étudiant</th>
+                                    <th>Cours</th>
+                                    <th>Séances</th>
                                     <th>Présences</th>
                                     <th>Absences</th>
+                                    <th>Retards</th>
                                     <th>Taux</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Mohammed Alaoui</td>
-                                    <td>42</td>
-                                    <td>2</td>
-                                    <td>95%</td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td><strong style="color: var(--accent-green);">100%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Marketing</td>
+                                    <td>8</td>
+                                    <td>8</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td><strong style="color: var(--accent-green);">100%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Base de Données</td>
+                                    <td>9</td>
+                                    <td>9</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td><strong style="color: var(--accent-green);">100%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Fondements IA</td>
+                                    <td>7</td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td><strong style="color: var(--accent-amber);">85.7%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Architecture Dotnet</td>
+                                    <td>7</td>
+                                    <td>7</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td><strong style="color: var(--accent-green);">100%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Cybersécurité</td>
+                                    <td>6</td>
+                                    <td>5</td>
+                                    <td>1</td>
+                                    <td>5</td>
+                                    <td><strong style="color: var(--accent-amber);">83.3%</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Analyse Numérique</td>
+                                    <td>7</td>
+                                    <td>6</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td><strong style="color: var(--accent-amber);">85.7%</strong></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Transcripts Page -->
-                <div class="page" id="transcripts">
-                    <h1 class="page-title">Relevés Académiques</h1>
-                    <p class="page-subtitle">Consultez vos relevés de notes</p>
+                <!-- Transcript Page -->
+                <div id="page-transcript" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Relevé Académique Officiel</h3>
+                        </div>
+                        <div style="padding: 20px; background: var(--neutral-bg); border-radius: var(--radius-md); margin-bottom: 20px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Étudiant</strong>
+                                    <p>Chahine TSOURI</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Matricule</strong>
+                                    <p>INGTA2-2024-001</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Formation</strong>
+                                    <p>Ingénieur Informatique TA</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Année Académique</strong>
+                                    <p>2025-2026</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Semestre</strong>
+                                    <p>Semestre 1 & 2</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Établissement</strong>
+                                    <p>Université SESAME</p>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Vos relevés académiques seront disponibles ici.</p>
-                    </div>
-                </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code Cours</th>
+                                    <th>Titre du Cours</th>
+                                    <th>Crédits</th>
+                                    <th>Note</th>
+                                    <th>Grade</th>
+                                    <th>Résultat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>INGTA2-D-S1</td>
+                                    <td>Gestion d'Entreprise</td>
+                                    <td>4</td>
+                                    <td>16.7/20</td>
+                                    <td>A</td>
+                                    <td><span class="badge badge-success">Validé</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INGTA1-D-S1</td>
+                                    <td>Base de Données Avancée</td>
+                                    <td>5</td>
+                                    <td>18.7/20</td>
+                                    <td>A+</td>
+                                    <td><span class="badge badge-success">Validé</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INGTA1-D-S1</td>
+                                    <td>Fondements de l'IA</td>
+                                    <td>4</td>
+                                    <td>15.5/20</td>
+                                    <td>B+</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INGTA2-D-S2</td>
+                                    <td>Marketing</td>
+                                    <td>3</td>
+                                    <td>17.5/20</td>
+                                    <td>A</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INGTA2-D-S2</td>
+                                    <td>Architecture Dotnet</td>
+                                    <td>4</td>
+                                    <td>17.5/20</td>
+                                    <td>A</td>
+                                    <td><span class="badge badge-warning">En cours</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INGTA2-D-S2</td>
+                                    <td>Cybersécurité</td>
+                                    <td>4</td>
+                                    <td>À compléter</td>
+                                    <td>-</td>
+                                    <td><span class="badge badge-info">À venir</span></td>
+                                </tr>
+                                <tr>
+                                    <td>INGTA2-D-S1</td>
+                                    <td>Analyse Numérique Avancée</td>
+                                    <td>4</td>
+                                    <td>À compléter</td>
+                                    <td>-</td>
+                                    <td><span class="badge badge-info">À venir</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                <!-- Certificates Page -->
-                <div class="page" id="certificates">
-                    <h1 class="page-title">Certificats et Attestations</h1>
-                    <p class="page-subtitle">Accédez à vos certificats de réussite</p>
-
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Vos certificats seront listés ici.</p>
+                        <div style="margin-top: 20px; padding: 16px; background: var(--neutral-bg); border-radius: var(--radius-md);">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Crédits Validés</strong>
+                                    <p style="font-size: 20px; color: var(--accent-green);">17 / 32</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Moyenne Générale</strong>
+                                    <p style="font-size: 20px; color: var(--primary-blue);">17.2 / 20</p>
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Statut</strong>
+                                    <p style="font-size: 20px; color: var(--accent-amber);">En Cours</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Messages Page -->
-                <div class="page" id="messages">
-                    <h1 class="page-title">Messages</h1>
-                    <p class="page-subtitle">Consultez vos messages</p>
-
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Vos messages apparaîtront ici.</p>
+                <div id="page-messages" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Messagerie (3 Non Lus)</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 0;">
+                            <div style="padding: 16px; border-bottom: 1px solid var(--neutral-light-gray); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background=var(--neutral-bg)" onmouseout="this.style.background='transparent'">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <strong>Dr. Bennani</strong>
+                                    <span style="font-size: 12px; color: var(--neutral-medium-gray);">Aujourd'hui 14:30</span>
+                                </div>
+                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 4px;">Re: Corrections du devoir sur la stratégie d'entreprise</p>
+                                <p style="font-size: 12px; color: var(--neutral-medium-gray);">Voici les corrections du devoir. Beau travail sur votre analyse...</p>
+                                <span class="badge badge-danger" style="margin-top: 8px;">Non lu</span>
+                            </div>
+                            <div style="padding: 16px; border-bottom: 1px solid var(--neutral-light-gray); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background=var(--neutral-bg)" onmouseout="this.style.background='transparent'">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <strong>Prof. Cherkaoui</strong>
+                                    <span style="font-size: 12px; color: var(--neutral-medium-gray);">Hier 10:15</span>
+                                </div>
+                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 4px;">Etude de cas - Groupe 3</p>
+                                <p style="font-size: 12px; color: var(--neutral-medium-gray);">Pouvez-vous confirmer la présence de votre groupe vendredi pour...</p>
+                                <span class="badge badge-danger" style="margin-top: 8px;">Non lu</span>
+                            </div>
+                            <div style="padding: 16px; border-bottom: 1px solid var(--neutral-light-gray); cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background=var(--neutral-bg)" onmouseout="this.style.background='transparent'">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                    <strong>Secrétariat Académique</strong>
+                                    <span style="font-size: 12px; color: var(--neutral-medium-gray);">16 Mars 09:00</span>
+                                </div>
+                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 4px;">Inscription aux examens finaux</p>
+                                <p style="font-size: 12px; color: var(--neutral-medium-gray);">Veuillez vous enregistrer pour les examens finaux avant le 25 mars...</p>
+                                <span class="badge badge-danger" style="margin-top: 8px;">Non lu</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Announcements Page -->
-                <div class="page" id="announcements">
-                    <h1 class="page-title">Annonces</h1>
-                    <p class="page-subtitle">Restez informé des dernières mises à jour</p>
+                <div id="page-announcements" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Annonces de l'Université</h3>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="padding: 16px; background: rgba(16, 185, 129, 0.05); border-left: 4px solid var(--accent-green); border-radius: var(--radius-md);">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <strong style="display: block; margin-bottom: 4px;">Modification Horaire - Marketing</strong>
+                                        <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 8px;">Le cours de Marketing est déplacé du lundi 10h à mardi 14h à partir de la semaine prochaine.</p>
+                                        <span style="font-size: 12px; color: var(--neutral-medium-gray);">17 Mars 2026 - Prof. Cherkaoui</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Les annonces institutionnelles seront affichées ici.</p>
+                            <div style="padding: 16px; background: rgba(245, 158, 11, 0.05); border-left: 4px solid var(--accent-amber); border-radius: var(--radius-md);">
+                                <strong style="display: block; margin-bottom: 4px;">Résultats Disponibles - Contrôle Continu</strong>
+                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 8px;">Les résultats du contrôle continu de Gestion d'Entreprise sont maintenant disponibles dans votre espace notes.</p>
+                                <span style="font-size: 12px; color: var(--neutral-medium-gray);">16 Mars 2026 - Secrétariat Académique</span>
+                            </div>
+
+                            <div style="padding: 16px; background: rgba(29, 78, 216, 0.05); border-left: 4px solid var(--primary-blue); border-radius: var(--radius-md);">
+                                <strong style="display: block; margin-bottom: 4px;">Nouveau Contenu Disponible</strong>
+                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 8px;">Module 4 de "Fondements de l'IA" est maintenant disponible. Vous pouvez commencer les leçons dès à présent.</p>
+                                <span style="font-size: 12px; color: var(--neutral-medium-gray);">15 Mars 2026 - Prof. Tabti</span>
+                            </div>
+
+                            <div style="padding: 16px; background: rgba(139, 92, 246, 0.05); border-left: 4px solid var(--accent-purple); border-radius: var(--radius-md);">
+                                <strong style="display: block; margin-bottom: 4px;">Fermeture du Campus</strong>
+                                <p style="font-size: 13px; color: var(--neutral-dark-gray); margin-bottom: 8px;">Le campus sera fermé le 21 mars pour maintenance. Les cours en ligne seront maintenus normalement.</p>
+                                <span style="font-size: 12px; color: var(--neutral-medium-gray);">14 Mars 2026 - Administration</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- SSO Page -->
-                <div class="page" id="sso">
-                    <h1 class="page-title">Authentification SSO</h1>
-                    <p class="page-subtitle">Gérez vos paramètres d'authentification unique</p>
+                <!-- Profile Page -->
+                <div id="page-profile" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Profil Utilisateur</h3>
+                        </div>
+                        <div style="padding: 20px;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div>
+                                    <strong style="display: block; margin-bottom: 8px;">Nom Complet</strong>
+                                    <input type="text" value="Chahine TSOURI" style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 8px;">Email</strong>
+                                    <input type="email" value="chahine.tsouri@sesame.edu" style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 8px;">Téléphone</strong>
+                                    <input type="tel" value="+212 6XX XXX XXX" style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 8px;">Matricule</strong>
+                                    <input type="text" value="INGTA2-2024-001" style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 8px;">Programme</strong>
+                                    <input type="text" value="Ingénieur Informatique TA" style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                </div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 8px;">Date d'Inscription</strong>
+                                    <input type="text" value="15 Septembre 2024" disabled style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md); background: var(--neutral-bg);">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" style="margin-top: 12px;">Enregistrer les modifications</button>
+                        </div>
+                    </div>
+                </div>
 
-                    <div style="background: var(--neutral-white); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm);">
-                        <p style="color: var(--neutral-medium-gray);">Configuration SSO (SmartSesame) pour la plateforme académique unifiée.</p>
+                <!-- Documents Page -->
+                <div id="page-documents" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Mes Documents & Fichiers</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nom du Fichier</th>
+                                    <th>Type</th>
+                                    <th>Taille</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Rapport_Gestion_2026.pdf</strong></td>
+                                    <td>PDF</td>
+                                    <td>2.4 MB</td>
+                                    <td>16 Mars 2026</td>
+                                    <td><a class="card-link">Télécharger</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Etude_Cas_Marketing.docx</strong></td>
+                                    <td>Document</td>
+                                    <td>1.8 MB</td>
+                                    <td>15 Mars 2026</td>
+                                    <td><a class="card-link">Télécharger</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Projet_BD_Code.zip</strong></td>
+                                    <td>Archive</td>
+                                    <td>5.2 MB</td>
+                                    <td>14 Mars 2026</td>
+                                    <td><a class="card-link">Télécharger</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Présentation_IA.pptx</strong></td>
+                                    <td>Présentation</td>
+                                    <td>3.1 MB</td>
+                                    <td>12 Mars 2026</td>
+                                    <td><a class="card-link">Télécharger</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Settings Page -->
+                <div id="page-settings" class="page-section" style="display: none;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Paramètres & Préférences</h3>
+                        </div>
+                        <div style="padding: 20px; display: flex; flex-direction: column; gap: 20px;">
+                            <div style="border-bottom: 1px solid var(--neutral-light-gray); padding-bottom: 16px;">
+                                <strong style="display: block; margin-bottom: 8px;">Notifications</strong>
+                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                    <input type="checkbox" checked>
+                                    <span>Recevoir les notifications de cours</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-top: 8px;">
+                                    <input type="checkbox" checked>
+                                    <span>Recevoir les rappels de devoirs</span>
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; margin-top: 8px;">
+                                    <input type="checkbox" checked>
+                                    <span>Recevoir les annonces importants</span>
+                                </label>
+                            </div>
+
+                            <div style="border-bottom: 1px solid var(--neutral-light-gray); padding-bottom: 16px;">
+                                <strong style="display: block; margin-bottom: 8px;">Langue & Apparence</strong>
+                                <div style="margin-bottom: 12px;">
+                                    <label style="display: block; margin-bottom: 4px; font-size: 13px;">Langue</label>
+                                    <select style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                        <option>Français</option>
+                                        <option>English</option>
+                                        <option>العربية</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label style="display: block; margin-bottom: 4px; font-size: 13px;">Thème</label>
+                                    <select style="width: 100%; padding: 8px; border: 1px solid var(--neutral-light-gray); border-radius: var(--radius-md);">
+                                        <option>Clair</option>
+                                        <option>Sombre</option>
+                                        <option>Auto</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <strong style="display: block; margin-bottom: 8px;">Sécurité</strong>
+                                <button class="btn btn-secondary" style="margin-right: 8px;">Changer le mot de passe</button>
+                                <button class="btn btn-secondary">Authentification à 2 Facteurs</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- AI Chat Button -->
-    <button class="ai-chat-btn" onclick="openAIChat()" title="Ouvrir NeuralunA">💬</button>
+    <!-- NeuralLuna Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbot" style="display: none;">
+        <div class="chatbot-header">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 18px;">🤖</span>
+                <span>NeuralLuna Assistant IA</span>
+            </div>
+            <button style="background: none; border: none; color: white; cursor: pointer; font-size: 18px; font-weight: bold;" onclick="closeChatbot()">✕</button>
+        </div>
+        <div class="chatbot-messages" id="messages">
+            <div class="message ai">
+                <div class="message-content">
+                    👋 Bonjour! Je suis NeuralLuna, votre assistant intelligent. Je peux vous aider avec:
+                    <ul style="margin-top: 8px; padding-left: 16px;">
+                        <li>Explications des cours</li>
+                        <li>Aide aux devoirs</li>
+                        <li>Conseils d'étude</li>
+                        <li>Infos académiques</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Posez votre question..." onkeypress="handleChatInput(event)">
+            <button class="chatbot-button" onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <!-- NeuralLuna Floating Button -->
+    <button class="chatbot-floating-btn" id="floatingBtn" onclick="openChatbot()" title="Ouvrir NeuralLuna">
+        🤖
+    </button>
 
     <script>
-        function navigateTo(page) {
+        // Page Navigation
+        function switchPage(pageName) {
             // Hide all pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Remove active class from nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
             
             // Show selected page
-            const pageEl = document.getElementById(page);
-            if (pageEl) {
-                pageEl.classList.add('active');
+            const pageId = `page-${pageName}`;
+            const page = document.getElementById(pageId);
+            if (page) {
+                page.style.display = 'block';
             }
-
-            // Update breadcrumb
-            const breadcrumbText = {
-                'dashboard': 'Tableau de bord',
-                'analytics': 'Analyse',
-                'reports': 'Rapports',
-                'courses': 'Mes cours',
-                'assignments': 'Travaux',
-                'resources': 'Ressources',
-                'students': 'Répertoire',
-                'performance': 'Performance',
+            
+            // Update title
+            const titles = {
+                'dashboard': 'Tableau de Bord',
+                'courses': 'Mes Cours',
+                'modules': 'Modules & Contenus',
+                'assignments': 'Devoirs & Projets',
+                'schedule': 'Emploi du Temps',
+                'grades': 'Notes & Résultats',
                 'attendance': 'Présences',
-                'grades': 'Notes',
-                'transcripts': 'Relevés',
-                'certificates': 'Certificats',
-                'ai-assistant': 'NeuralunA',
-                'messages': 'Messages',
+                'transcript': 'Relevé Académique',
+                'messages': 'Messagerie',
                 'announcements': 'Annonces',
-                'settings': 'Paramètres',
-                'sso': 'SSO'
+                'profile': 'Mon Profil',
+                'documents': 'Mes Documents',
+                'settings': 'Paramètres'
             };
             
-            document.getElementById('breadcrumb-current').textContent = breadcrumbText[page] || page;
-
+            document.getElementById('page-title').textContent = titles[pageName] || 'SmartSesame';
+            
             // Update active nav item
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            if (event && event.target) {
-                const navItem = event.target.closest('.nav-item');
-                if (navItem) navItem.classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Chatbot Functions
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Add user message
+                const messagesDiv = document.getElementById('messages');
+                const userMessage = document.createElement('div');
+                userMessage.className = 'message user';
+                userMessage.innerHTML = `<div class="message-content">${message}</div>`;
+                messagesDiv.appendChild(userMessage);
+                
+                input.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const aiMessage = document.createElement('div');
+                    aiMessage.className = 'message ai';
+                    
+                    const responses = [
+                        'C\'est une excellente question! Pour mieux vous aider, pouvez-vous me donner plus de détails?',
+                        'Je peux vous aider avec ça. Voulez-vous que j\'explique les concepts principaux ou un aspect spécifique?',
+                        'Bonne question! Voici quelques points clés à considérer...',
+                        'Je comprends votre question. Basé sur le contenu de vos cours, voici ce que vous devez savoir...'
+                    ];
+                    
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    aiMessage.innerHTML = `<div class="message-content">${randomResponse}</div>`;
+                    messagesDiv.appendChild(aiMessage);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }, 500);
             }
         }
 
-        function openAIChat() {
-            navigateTo('ai-assistant');
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
         }
+
+        function openChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            const floatingBtn = document.getElementById('floatingBtn');
+            chatbot.style.display = 'flex';
+            floatingBtn.style.display = 'none';
+        }
+
+        function closeChatbot() {
+            const chatbot = document.getElementById('chatbot');
+            const floatingBtn = document.getElementById('floatingBtn');
+            chatbot.style.display = 'none';
+            floatingBtn.style.display = 'flex';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('[v0] SmartSesame Platform Initialized Successfully');
+            console.log('[v0] User: Chahine TSOURI');
+            console.log('[v0] Program: Ingénieur Informatique TA');
+        });
     </script>
 </body>
 </html>
